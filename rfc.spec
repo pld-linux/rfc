@@ -14,8 +14,6 @@ Source5:	ftp://ftp.isi.edu/in-notes/tar/RFCs2501-3000.tar.gz
 Source6:	ftp://ftp.isi.edu/in-notes/tar/RFCs3001-latest.tar.gz
 Source7:	ftp://ftp.isi.edu/in-notes/%{name}-index.txt
 Source8:	ftp://ftp.isi.edu/in-notes/%{name}%{version}.txt
-Source9:	ftp://ftp.isi.edu/in-notes/%{name}3246.txt
-Source10:	ftp://ftp.isi.edu/in-notes/%{name}3248.txt
 Patch0:		%{name}.patch
 URL:		http://www.rfc.net/
 BuildRequires:	enscript
@@ -109,8 +107,6 @@ Dokumenty RFC (Request For Comments) w formacie Adobe PDF.
 
 %build
 rm -f rfc2328.hastabs.txt
-install %{SOURCE9} .
-install %{SOURCE10} .
 
 # These are broken/unreadable by gv
 mv -f rfc1144.ps rfc1144.orig.ps
