@@ -249,7 +249,8 @@ BASIC="rfc1032.txt rfc1033.txt rfc1034.txt rfc1035.txt rfc1101.txt"\
 "      rfc2915.txt rfc2929.txt rfc2930.txt rfc2931.txt rfc2945.txt"\
 "      rfc3007.txt rfc3008.txt rfc3045.txt rfc3062.txt rfc3088.txt"\
 "      rfc3090.txt rfc3110.txt rfc3112.txt rfc3174.txt rfc3296.txt"\
-"      rfc3377.txt rfc3383.txt rfc951.txt  rfc952.txt  rfc959.txt"
+"      rfc3315.txt rfc3377.txt rfc3383.txt rfc951.txt  rfc952.txt"\
+"      rfc959.txt"
 
 for i in $BASIC; do
 	install $i* $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/text
