@@ -7,7 +7,7 @@ Summary:	RFC documents
 Summary(pl):	Dokumenty RFC
 Name:		rfc
 Version:	3498
-Release:	1
+Release:	2
 License:	distributable
 Group:		Documentation
 Source0:	ftp://ftp.isi.edu/in-notes/tar/RFCs0001-0500.tar.gz
@@ -17,6 +17,7 @@ Source3:	ftp://ftp.isi.edu/in-notes/tar/RFCs1501-2000.tar.gz
 Source4:	ftp://ftp.isi.edu/in-notes/tar/RFCs2001-2500.tar.gz
 Source5:	ftp://ftp.isi.edu/in-notes/tar/RFCs2501-3000.tar.gz
 Source6:	ftp://ftp.isi.edu/in-notes/tar/RFCs3001-3500.tar.gz
+Source7:	%{name}-missing_from_tar.tar.bz2
 Patch0:		%{name}.patch
 URL:		http://www.rfc.net/
 %if %{!?_with_ps:%{!?_without_pdf:1}%{?_without_pdf:0}}%{?_with_ps:1}
@@ -97,7 +98,7 @@ Dokumenty RFC (Request For Comments) w formacie Adobe PDF.
 %endif
 
 %prep
-%setup -q -c -a1 -a2 -a3 -a4 -a5 -a6
+%setup -q -c -a1 -a2 -a3 -a4 -a5 -a6 -a7
 %patch0 -p0
 
 %build
