@@ -7,7 +7,7 @@
 Summary:	RFC documents
 Summary(pl):	Dokumenty RFC
 Name:		rfc
-Version:	3371
+Version:	3377
 %define		rfcindex_version	1.2
 Release:	1
 License:	distributable
@@ -223,9 +223,9 @@ pod2man rfcindex > rfcindex.1
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/text/{{0,1,2}{0,1,2,3,4,5,6,7,8,9},30,31,32,33}00
-install -d $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/pdf/{{0,1,2}{0,1,2,3,4,5,6,7,8,9},30,31,32,33}00
-install -d $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/postscript/{{0,1,2}{0,1,2,3,4,5,6,7,8,9},30,31,32,33}00
+install -d $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/text/{{0,1,2}{0,1,2,3,4,5,6,7,8,9},3{0,1,2,3,4}00
+install -d $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/pdf/{{0,1,2}{0,1,2,3,4,5,6,7,8,9},3{0,1,2,3,4}00
+install -d $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/postscript/{{0,1,2}{0,1,2,3,4,5,6,7,8,9},3{0,1,2,3,4}00
 
 install rfc-index.txt $RPM_BUILD_ROOT%{_defaultdocdir}/RFC
 
@@ -242,7 +242,7 @@ find . -name 'rfc[1-9]*.ps'  -print | xargs gzip -9
 %endif
 
 # install rfc[1-9]*.txt* $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/text
-for i in {0,1,2}{0,1,2,3,4,5,6,7,8,9} 30 31 32 33 ; do
+for i in {0,1,2}{0,1,2,3,4,5,6,7,8,9} 3{0,1,2,3}; do
 	install rfc`echo $i|sed s/^0\*//g`[0-9][0-9][a.]*txt* \
 		$RPM_BUILD_ROOT%{_defaultdocdir}/RFC/text/${i}00
 done
@@ -250,7 +250,7 @@ install rfc[0-9].txt* $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/text/0000
 
 # install rfc*.pdf       $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/pdf
 %if %{!?_without_pdf:1}%{?_without_pdf:0}
-for i in {0,1,2}{0,1,2,3,4,5,6,7,8,9} 30 31 32 33 ; do
+for i in {0,1,2}{0,1,2,3,4,5,6,7,8,9} 3{0,1,2,3} ; do
 	install rfc`echo $i|sed s/^0\*//g`[0-9][0-9][a.-]*pdf \
 		$RPM_BUILD_ROOT%{_defaultdocdir}/RFC/pdf/${i}00
 done
@@ -259,7 +259,7 @@ install rfc[0-9].pdf $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/pdf/0000
 
 %if %{!?_with_ps:0}%{?_with_ps:1}
 # install rfc*.ps        $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/postscript
-for i in {0,1,2}{0,1,2,3,4,5,6,7,8,9} 30 31 32 33 ; do
+for i in {0,1,2}{0,1,2,3,4,5,6,7,8,9} 3{0,1,2,3} ; do
 	install rfc`echo $i|sed s/^0\*//g`[0-9][0-9][a.-]*ps* \
 		$RPM_BUILD_ROOT%{_defaultdocdir}/RFC/postscript/${i}00
 done
