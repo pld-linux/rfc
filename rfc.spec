@@ -2,7 +2,7 @@ Summary:	RFC documents
 Summary(pl):	Dokumenty RFC
 Name:		rfc
 Version:	3275
-Release:	1
+Release:	2
 License:	distributable
 Group:		Documentation
 Source0:	ftp://ftp.isi.edu/in-notes/tar/RFCs0001-0500.tar.gz
@@ -52,7 +52,7 @@ Summary:	Commonly referenced RFC documents
 Summary(pl):	Najczê¶ciej wymieniane dokumenty RFC
 Group:		Documentation
 Requires:	%{name}-index = %{version}
-Conflicts:	%{name}-text
+Obsoletes:	%{name}-text
 
 %description text-basic
 This is pure text version of basic RFC (Request For Comments) documents,
@@ -62,14 +62,13 @@ referenced by some other package documentation.
 Wersja tekstowa dokumentów podstawowych RFC (Request For Comments), do
 których odnosi siê dokumentacja innych pakietów.
 
-
 %package	text
 Summary:	RFC documents - pure text version
 Summary(pl):	Wersja czysto tekstowa dokumentów RFC
 Group:		Documentation
 Requires:	%{name}-index = %{version}
-Conflicts:	%{name}-text-basic
 Provides:	%{name}-text-basic
+Obsoletes:	%{name}-text-basic
 
 %description text
 This is pure text version of RFC (Request For Comments) documents. The
@@ -80,7 +79,6 @@ formats only.
 Wersja tekstowa dokumentów RFC (Request For Comments). Zbiór jest
 niepe³ny, gdy¿ niektóre dokumenty s± dostêpne wy³±cznie w postaci
 postscriptowej i PDF.
-
 
 %package	ps
 Summary:	RFC documents - PostScript version
