@@ -1,9 +1,10 @@
 #
 # Conditional build:
-# _with_ps	- build package with RFCs in PostScript format too
-# _without_pdf	- don't build package with RFCs in PDF format
-#
+%bcond_with ps		# build package with RFCs in PostScript format too
+%bcond_without pdf	# don't build package with RFCs in PDF format
+
 Summary:	RFC documents
+Summary(es):	Los documentos RFC
 Summary(pl):	Dokumenty RFC
 Name:		rfc
 Version:	3498
@@ -28,7 +29,7 @@ Source7:	%{name}-missing_from_tar.tar.bz2
 # Source7-md5:	acf2528ee36d45c0396265a46d38cef5
 Patch0:		%{name}.patch
 URL:		http://www.rfc.net/
-%if %{!?_with_ps:%{!?_without_pdf:1}%{?_without_pdf:0}}%{?_with_ps:1}
+%if %{with ps} || %{with pdf}
 BuildRequires:	enscript
 BuildRequires:	ghostscript
 %endif
@@ -40,20 +41,30 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 RFC (Request For Comments) documents are actual and suggested Internet
 standards.
 
+%description -l es
+Los documentos RFC (Request For Comments: petición de comentarios) son
+los estándares actuales y sugeridos del Internet.
+
 %description -l pl
 Dokumenty RFC (Request For Comments) zawieraj± opis obowi±zuj±cych i
 proponowanych standardów internetowych.
 
 %package text-basic
 Summary:	Commonly referenced RFC documents
+Summary(es):	Documentos RFC repetidamente referidos
 Summary(pl):	Najczê¶ciej wymieniane dokumenty RFC
 Group:		Documentation
 Requires:	%{name}-index >= %{version}
 Obsoletes:	%{name}-text
 
 %description text-basic
-This is pure text version of basic RFC (Request For Comments) documents,
-referenced by some other package documentation.
+This is pure text version of basic RFC (Request For Comments)
+documents, referenced by some other package documentation.
+
+%description text-basic -l es
+Ésta es la versión de texto puro de los documentos RFC (Request For
+Comments: petición de comentarios), a los que se refiere la
+documentación de algunos otros paquetes.
 
 %description text-basic -l pl
 Wersja tekstowa dokumentów podstawowych RFC (Request For Comments), do
@@ -61,6 +72,7 @@ których odnosi siê dokumentacja innych pakietów.
 
 %package text
 Summary:	RFC documents - pure text version
+Summary(es):	Documentos RFC - versión de texto puro
 Summary(pl):	Wersja czysto tekstowa dokumentów RFC
 Group:		Documentation
 Requires:	%{name}-index >= %{version}
@@ -72,14 +84,20 @@ This is pure text version of RFC (Request For Comments) documents. The
 set is incomplete. Some documents are available in PostScript and PDF
 formats only.
 
+%description text -l es
+Ésta es la versión de texto puro de los documentos RFC (Request For
+Comments: petición de comentarios). Este conjunto es incompleto, ya
+que algunos documentos son disponibles sólo en los formatos PostScript
+y PDF.
+
 %description text -l pl
 Wersja tekstowa dokumentów RFC (Request For Comments). Zbiór jest
 niepe³ny, gdy¿ niektóre dokumenty s± dostêpne wy³±cznie w postaci
 postscriptowej i PDF.
 
-%if %{!?_with_ps:0}%{?_with_ps:1}
 %package ps
 Summary:	RFC documents - PostScript version
+Summary(es):	Documentos RFC - versión PostScript
 Summary(pl):	Wersja postscriptowa dokumentów RFC
 Group:		Documentation
 Requires:	%{name}-index >= %{version}
@@ -87,13 +105,16 @@ Requires:	%{name}-index >= %{version}
 %description ps
 PostScript version of RFC (Request For Comments) documents.
 
+%description ps -l es
+La versión PostScript de los documentos RFC (Request For Comments:
+petición de comentarios).
+
 %description ps -l pl
 Wersja postscriptowa dokumentów RFC (Request For Comments).
-%endif
 
-%if %{!?_without_pdf:1}%{?_without_pdf:0}
 %package pdf
-Summary:	RFC documents - pdf version
+Summary:	RFC documents - PDF version
+Summary(es):	Documentos RFC - versión PDF
 Summary(pl):	Wersja postscriptowa dokumentów RFC
 Group:		Documentation
 Requires:	%{name}-index >= %{version}
@@ -101,9 +122,12 @@ Requires:	%{name}-index >= %{version}
 %description pdf
 RFC (Request For Comments) documents in Adobe PDF format.
 
+%description pdf -l es
+Documentos RFC (Request For Comments: petición de comentarios) en
+formato Adobe PDF.
+
 %description pdf -l pl
 Dokumenty RFC (Request For Comments) w formacie Adobe PDF.
-%endif
 
 %prep
 %setup -q -c -a1 -a2 -a3 -a4 -a5 -a6 -a7
@@ -127,7 +151,7 @@ mv -f rfc546.ps rfc546-pict.ps
 mv -f rfc525.pdf rfc525-pict.pdf
 mv -f rfc546.pdf rfc546-pict.pdf
 
-%if %{!?_with_ps:0}%{?_with_ps:1}
+%if %{with ps}
 for n in 1144 1305 ; do
 	gs -q -dNOPAUSE -dBATCH -dSAFER -sDEVICE=pswrite \
 	   -sOutputFile=rfc$n.ps -c save pop -f rfc$n.pdf
@@ -142,22 +166,22 @@ for n in 1119 1124 1128 1129 1131 ; do
 done
 
 # Generate .ps and .pdf versions when they are not provided
-%if %{!?_with_ps:%{!?_without_pdf:1}%{?_without_pdf:0}}%{?_with_ps:1}
+%if %{with ps} || %{with pdf}
 for i in rfc[1-9]*.txt ; do
 	BASE=`echo $i | sed "s/.txt$//"`
 	PSFILE=$BASE.ps
 	if [ ! -e $BASE.ps ] ; then
 		# avoid stopping on errors ; .ps file may be correct
 		# even after processing problems
-		enscript --margin=54 -B  -fCourier11 -p $BASE.ps $i 2>/dev/null || :
+		enscript --margin=54 -B  -fCourier11 -p $BASE.ps $i 2>/dev/null ||:
 	fi
 %endif
-%if %{!?_without_pdf:1}%{?_without_pdf:0}
+%if %{with pdf}
 	if [ ! -e $BASE.pdf ] ; then
 		ps2pdf $BASE.ps $BASE.pdf 2>/dev/null
 	fi
 %endif
-%if %{!?_with_ps:%{!?_without_pdf:1}%{?_without_pdf:0}}%{?_with_ps:1}
+%if %{with ps} || %{with pdf}
 done
 %endif
 
@@ -168,7 +192,7 @@ install -d $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/pdf/{{0,1,2}{0,1,2,3,4,5,6,7,8,9
 install -d $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/postscript/{{0,1,2}{0,1,2,3,4,5,6,7,8,9},3{0,1,2,3,4}}00
 
 find . -name 'rfc[1-9]*.txt' -print | xargs gzip -9
-%if %{!?_with_ps:0}%{?_with_ps:1}
+%if %{with ps}
 find . -name 'rfc[1-9]*.ps'  -print | xargs gzip -9
 %endif
 
@@ -180,7 +204,7 @@ done
 install rfc[0-9].txt* $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/text/0000
 
 # install rfc*.pdf       $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/pdf
-%if %{!?_without_pdf:1}%{?_without_pdf:0}
+%if %{with pdf}
 for i in {0,1,2}{0,1,2,3,4,5,6,7,8,9} 3{0,1,2,3,4} ; do
 	install rfc`echo $i|sed s/^0\*//g`[0-9][0-9][a.-]*pdf \
 		$RPM_BUILD_ROOT%{_defaultdocdir}/RFC/pdf/${i}00
@@ -188,7 +212,7 @@ done
 install rfc[0-9].pdf $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/pdf/0000
 %endif
 
-%if %{!?_with_ps:0}%{?_with_ps:1}
+%if %{with ps}
 # install rfc*.ps        $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/postscript
 for i in {0,1,2}{0,1,2,3,4,5,6,7,8,9} 3{0,1,2,3,4} ; do
 	install rfc`echo $i|sed s/^0\*//g`[0-9][0-9][a.-]*ps* \
@@ -244,13 +268,13 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_defaultdocdir}/RFC/text
 %{_defaultdocdir}/RFC/text/[0-9]*
 
-%if %{!?_with_ps:0}%{?_with_ps:1}
+%if %{with ps}
 %files ps
 %defattr(644,root,root,755)
 %{_defaultdocdir}/RFC/postscript
 %endif
 
-%if %{!?_without_pdf:1}%{?_without_pdf:0}
+%if %{with pdf}
 %files pdf
 %defattr(644,root,root,755)
 %{_defaultdocdir}/RFC/pdf
