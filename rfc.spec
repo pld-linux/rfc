@@ -11,13 +11,21 @@ Release:	3
 License:	distributable
 Group:		Documentation
 Source0:	ftp://ftp.isi.edu/in-notes/tar/RFCs0001-0500.tar.gz
+# Source0-md5:	b592ed689022655d596dc5aa5d80ddfb
 Source1:	ftp://ftp.isi.edu/in-notes/tar/RFCs0501-1000.tar.gz
+# Source1-md5:	96d468b8ecb513e642ca0e9b4032a150
 Source2:	ftp://ftp.isi.edu/in-notes/tar/RFCs1001-1500.tar.gz
+# Source2-md5:	e64bb6f54570192b386ad0a2a2281d3e
 Source3:	ftp://ftp.isi.edu/in-notes/tar/RFCs1501-2000.tar.gz
+# Source3-md5:	18bc03445190a9a9e331eb47b07f942e
 Source4:	ftp://ftp.isi.edu/in-notes/tar/RFCs2001-2500.tar.gz
+# Source4-md5:	ec09b758d25e39b1d4a415780ff0c329
 Source5:	ftp://ftp.isi.edu/in-notes/tar/RFCs2501-3000.tar.gz
+# Source5-md5:	0799d01a6776e69b5d3ec3b348013c79
 Source6:	ftp://ftp.isi.edu/in-notes/tar/RFCs3001-3500.tar.gz
+# Source6-md5:	042d28a48aefdf6d9d53fea02ea2d0c9
 Source7:	%{name}-missing_from_tar.tar.bz2
+# Source7-md5:	066c4f4d3164a3079eaf1a89977b5c5c
 Patch0:		%{name}.patch
 URL:		http://www.rfc.net/
 %if %{!?_with_ps:%{!?_without_pdf:1}%{?_without_pdf:0}}%{?_with_ps:1}
