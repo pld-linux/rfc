@@ -1,8 +1,8 @@
-
-# Conditionals:
-# _with_ps
-# _without_pdf
-
+#
+# Conditional build:
+# _with_ps	- build package with RFCs in PostScript format too
+# _without_pdf	- don't build package with RFCs in PDF format
+#
 Summary:	RFC documents
 Summary(pl):	Dokumenty RFC
 Name:		rfc
@@ -44,7 +44,7 @@ standards.
 Dokumenty RFC (Request For Comments) zawieraj± opis obowi±zuj±cych i
 proponowanych standardów internetowych.
 
-%package	text-basic
+%package text-basic
 Summary:	Commonly referenced RFC documents
 Summary(pl):	Najczê¶ciej wymieniane dokumenty RFC
 Group:		Documentation
@@ -59,7 +59,7 @@ referenced by some other package documentation.
 Wersja tekstowa dokumentów podstawowych RFC (Request For Comments), do
 których odnosi siê dokumentacja innych pakietów.
 
-%package	text
+%package text
 Summary:	RFC documents - pure text version
 Summary(pl):	Wersja czysto tekstowa dokumentów RFC
 Group:		Documentation
@@ -78,7 +78,7 @@ niepe³ny, gdy¿ niektóre dokumenty s± dostêpne wy³±cznie w postaci
 postscriptowej i PDF.
 
 %if %{!?_with_ps:0}%{?_with_ps:1}
-%package	ps
+%package ps
 Summary:	RFC documents - PostScript version
 Summary(pl):	Wersja postscriptowa dokumentów RFC
 Group:		Documentation
@@ -92,7 +92,7 @@ Wersja postscriptowa dokumentów RFC (Request For Comments).
 %endif
 
 %if %{!?_without_pdf:1}%{?_without_pdf:0}
-%package	pdf
+%package pdf
 Summary:	RFC documents - pdf version
 Summary(pl):	Wersja postscriptowa dokumentów RFC
 Group:		Documentation
