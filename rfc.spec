@@ -2,7 +2,7 @@ Summary:	RFC documents
 Summary(pl):	Dokumenty RFC
 Name:		rfc
 Version:	3240
-Release:	2
+Release:	3
 License:	distributable
 Group:		Documentation
 Source0:	ftp://ftp.isi.edu/in-notes/tar/RFCs0001-0500.tar.gz
@@ -19,6 +19,7 @@ Patch0:		%{name}.patch
 URL:		http://www.rfc.net/
 BuildRequires:	enscript
 BuildRequires:	ghostscript
+BuildRequires:	pstotext
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -90,26 +91,33 @@ Dokumenty RFC (Request For Comments) w formacie Adobe PDF.
 %patch0 -p0
 
 %build
-rm rfc2328.hastabs.txt
+rm -f rfc2328.hastabs.txt
 
 # These are broken/unreadable by gv
-mv rfc1144.ps rfc1144.orig.ps
-mv rfc1279.ps rfc1279.orig.ps
-mv rfc1291.ps rfc1291.orig.ps
+mv -f rfc1144.ps rfc1144.orig.ps
+mv -f rfc1279.ps rfc1279.orig.ps
+mv -f rfc1291.ps rfc1291.orig.ps
 
 # These are unreadable because of character spacing problems
-mv rfc1125.pdf rfc1125.orig.pdf
-mv rfc1275.pdf rfc1275.orig.pdf
+mv -f rfc1125.pdf rfc1125.orig.pdf
+mv -f rfc1275.pdf rfc1275.orig.pdf
 
 # These are pictures only
-mv rfc525.ps rfc525-pict.ps
-mv rfc546.ps rfc546-pict.ps
-mv rfc525.pdf rfc525-pict.pdf
-mv rfc546.pdf rfc546-pict.pdf
+mv -f rfc525.ps rfc525-pict.ps
+mv -f rfc546.ps rfc546-pict.ps
+mv -f rfc525.pdf rfc525-pict.pdf
+mv -f rfc546.pdf rfc546-pict.pdf
 
 for n in 1144 1305 ; do
 	gs -q -dNOPAUSE -dBATCH -dSAFER -sDEVICE=pswrite \
 	   -sOutputFile=rfc$n.ps -c save pop -f rfc$n.pdf
+done
+
+# these were provided only in .ps
+for n in 1119 1124 1128 1129 1131 ; do
+	echo -e '\nThe text below was generated from PostScript by pstotext.' >> rfc$n.txt
+	echo -e '----------------------------------------------------------------------\n' >> rfc$n.txt
+	pstotext rfc$n.ps >> rfc$n.txt
 done
 
 # Generate .ps and .pdf versions when they are not provided
@@ -170,6 +178,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files index
 %defattr(644,root,root,755)
+%dir %{_defaultdocdir}/RFC
 %{_defaultdocdir}/RFC/rfc-index.txt
 
 %files ps
