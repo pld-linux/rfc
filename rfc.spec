@@ -1,13 +1,13 @@
 
 # Conditionals:
-# _without_ps
+# _with_ps
 # _without_pdf
 
 Summary:	RFC documents
 Summary(pl):	Dokumenty RFC
 Name:		rfc
 Version:	3275
-Release:	7
+Release:	8
 License:	distributable
 Group:		Documentation
 Source0:	ftp://ftp.isi.edu/in-notes/tar/RFCs0001-0500.tar.gz
@@ -21,9 +21,11 @@ Source7:	ftp://ftp.isi.edu/in-notes/%{name}-index.txt
 Source8:	ftp://ftp.isi.edu/in-notes/%{name}%{version}.txt
 Patch0:		%{name}.patch
 URL:		http://www.rfc.net/
+%if %{!?_with_ps:%{!?_without_pdf:1}%{?_without_pdf:0}}%{?_with_ps:1}
 BuildRequires:	enscript
 BuildRequires:	ghostscript
-BuildRequires:	pstotext
+%endif
+BuildRequires:	xpdf
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -82,6 +84,7 @@ Wersja tekstowa dokumentów RFC (Request For Comments). Zbiór jest
 niepe³ny, gdy¿ niektóre dokumenty s± dostêpne wy³±cznie w postaci
 postscriptowej i PDF.
 
+%if %{!?_with_ps:0}%{?_with_ps:1}
 %package	ps
 Summary:	RFC documents - PostScript version
 Summary(pl):	Wersja postscriptowa dokumentów RFC
@@ -93,7 +96,9 @@ PostScript version of RFC (Request For Comments) documents.
 
 %description ps -l pl
 Wersja postscriptowa dokumentów RFC (Request For Comments).
+%endif
 
+%if %{!?_without_pdf:1}%{?_without_pdf:0}
 %package	pdf
 Summary:	RFC documents - pdf version
 Summary(pl):	Wersja postscriptowa dokumentów RFC
@@ -105,6 +110,7 @@ RFC (Request For Comments) documents in Adobe PDF format.
 
 %description pdf -l pl
 Dokumenty RFC (Request For Comments) w formacie Adobe PDF.
+%endif
 
 %prep
 %setup -q -c -a1 -a2 -a3 -a4 -a5 -a6
@@ -128,23 +134,25 @@ mv -f rfc546.ps rfc546-pict.ps
 mv -f rfc525.pdf rfc525-pict.pdf
 mv -f rfc546.pdf rfc546-pict.pdf
 
+%if %{!?_with_ps:0}%{?_with_ps:1}
 for n in 1144 1305 ; do
 	gs -q -dNOPAUSE -dBATCH -dSAFER -sDEVICE=pswrite \
 	   -sOutputFile=rfc$n.ps -c save pop -f rfc$n.pdf
 done
+%endif
 
-# these were provided only in .ps
+# these were provided only in .ps/.pdf
 for n in 1119 1124 1128 1129 1131 ; do
-	echo -e '\nThe text below was generated from PDF by psttopdf.' >> rfc$n.txt
+	echo -e '\nThe text below was generated from PDF by pdftotext.' >> rfc$n.txt
 	echo -e '----------------------------------------------------------------------\n' >> rfc$n.txt
 	pdftotext rfc$n.pdf - >> rfc$n.txt
 done
 
 # Generate .ps and .pdf versions when they are not provided
+%if %{!?_with_ps:%{!?_without_pdf:1}%{?_without_pdf:0}}%{?_with_ps:1}
 for i in rfc[1-9]*.txt ; do
 	BASE=`echo $i | sed "s/.txt$//"`
 	PSFILE=$BASE.ps
-%if %{!?_without_ps:1}%{?_without_ps:0}
 	if [ ! -e $BASE.ps ] ; then
 		# avoid stopping on errors ; .ps file may be correct
 		# even after processing problems
@@ -156,7 +164,9 @@ for i in rfc[1-9]*.txt ; do
 		ps2pdf $BASE.ps $BASE.pdf 2>/dev/null
 	fi
 %endif
+%if %{!?_with_ps:%{!?_without_pdf:1}%{?_without_pdf:0}}%{?_with_ps:1}
 done
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -167,7 +177,7 @@ install -d $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/postscript/{{0,1,2}{0,1,2,3,4,5,
 install %{SOURCE7} $RPM_BUILD_ROOT%{_defaultdocdir}/RFC
 
 find . -name 'rfc[1-9]*.txt' -print | xargs gzip -9
-%if %{!?_without_ps:1}%{?_without_ps:0}
+%if %{!?_with_ps:0}%{?_with_ps:1}
 find . -name 'rfc[1-9]*.ps'  -print | xargs gzip -9
 %endif
 
@@ -187,7 +197,7 @@ done
 install rfc[0-9].pdf $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/pdf/0000
 %endif
 
-%if %{!?_without_ps:1}%{?_without_ps:0}
+%if %{!?_with_ps:0}%{?_with_ps:1}
 # install rfc*.ps        $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/postscript
 for i in {0,1,2}{0,1,2,3,4,5,6,7,8,9} 30 31 32 ; do
 	install rfc`echo $i|sed s/^0\*//g`[0-9][0-9][a.-]*ps* \
@@ -245,7 +255,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_defaultdocdir}/RFC
 %{_defaultdocdir}/RFC/rfc-index.txt
 
-%if %{!?_without_ps:1}%{?_without_ps:0}
+%if %{!?_with_ps:0}%{?_with_ps:1}
 %files ps
 %defattr(644,root,root,755)
 %{_defaultdocdir}/RFC/postscript
