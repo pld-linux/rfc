@@ -7,7 +7,7 @@ Summary:	RFC documents
 Summary(pl):	Dokumenty RFC
 Name:		rfc
 Version:	3275
-Release:	9
+Release:	10
 License:	distributable
 Group:		Documentation
 Source0:	ftp://ftp.isi.edu/in-notes/tar/RFCs0001-0500.tar.gz
