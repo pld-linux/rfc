@@ -1,8 +1,13 @@
+
+# Conditionals:
+# _without_ps
+# _without_pdf
+
 Summary:	RFC documents
 Summary(pl):	Dokumenty RFC
 Name:		rfc
 Version:	3275
-Release:	6
+Release:	7
 License:	distributable
 Group:		Documentation
 Source0:	ftp://ftp.isi.edu/in-notes/tar/RFCs0001-0500.tar.gz
@@ -130,23 +135,27 @@ done
 
 # these were provided only in .ps
 for n in 1119 1124 1128 1129 1131 ; do
-	echo -e '\nThe text below was generated from PostScript by pstotext.' >> rfc$n.txt
+	echo -e '\nThe text below was generated from PDF by psttopdf.' >> rfc$n.txt
 	echo -e '----------------------------------------------------------------------\n' >> rfc$n.txt
-	pstotext - < rfc$n.ps >> rfc$n.txt || :
+	pdftotext rfc$n.pdf - >> rfc$n.txt
 done
 
 # Generate .ps and .pdf versions when they are not provided
 for i in rfc[1-9]*.txt ; do
 	BASE=`echo $i | sed "s/.txt$//"`
 	PSFILE=$BASE.ps
+%if %{!?_without_ps:1}%{?_without_ps:0}
 	if [ ! -e $BASE.ps ] ; then
 		# avoid stopping on errors ; .ps file may be correct
 		# even after processing problems
 		enscript --margin=54 -B  -fCourier11 -p $BASE.ps $i 2>/dev/null || :
 	fi
+%endif
+%if %{!?_without_pdf:1}%{?_without_pdf:0}
 	if [ ! -e $BASE.pdf ] ; then
 		ps2pdf $BASE.ps $BASE.pdf 2>/dev/null
 	fi
+%endif
 done
 
 %install
@@ -158,7 +167,9 @@ install -d $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/postscript/{{0,1,2}{0,1,2,3,4,5,
 install %{SOURCE7} $RPM_BUILD_ROOT%{_defaultdocdir}/RFC
 
 find . -name 'rfc[1-9]*.txt' -print | xargs gzip -9
+%if %{!?_without_ps:1}%{?_without_ps:0}
 find . -name 'rfc[1-9]*.ps'  -print | xargs gzip -9
+%endif
 
 # install rfc[1-9]*.txt* $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/text
 for i in {0,1,2}{0,1,2,3,4,5,6,7,8,9} 30 31 32 ; do
@@ -168,18 +179,22 @@ done
 install rfc[0-9].txt* $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/text/0000
 
 # install rfc*.pdf       $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/pdf
+%if %{!?_without_pdf:1}%{?_without_pdf:0}
 for i in {0,1,2}{0,1,2,3,4,5,6,7,8,9} 30 31 32 ; do
 	install rfc`echo $i|sed s/^0\*//g`[0-9][0-9][a.-]*pdf \
 		$RPM_BUILD_ROOT%{_defaultdocdir}/RFC/pdf/${i}00
 done
 install rfc[0-9].pdf $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/pdf/0000
+%endif
 
+%if %{!?_without_ps:1}%{?_without_ps:0}
 # install rfc*.ps        $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/postscript
 for i in {0,1,2}{0,1,2,3,4,5,6,7,8,9} 30 31 32 ; do
 	install rfc`echo $i|sed s/^0\*//g`[0-9][0-9][a.-]*ps* \
 		$RPM_BUILD_ROOT%{_defaultdocdir}/RFC/postscript/${i}00
 done
 install rfc[0-9].ps* $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/postscript/0000
+%endif
 
 # install rfc*.html      $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/html
 BASIC="rfc1032.txt rfc1033.txt rfc1034.txt rfc1035.txt rfc1101.txt"\
@@ -230,10 +245,14 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_defaultdocdir}/RFC
 %{_defaultdocdir}/RFC/rfc-index.txt
 
+%if %{!?_without_ps:1}%{?_without_ps:0}
 %files ps
 %defattr(644,root,root,755)
 %{_defaultdocdir}/RFC/postscript
+%endif
 
+%if %{!?_without_pdf:1}%{?_without_pdf:0}
 %files pdf
 %defattr(644,root,root,755)
 %{_defaultdocdir}/RFC/pdf
+%endif
