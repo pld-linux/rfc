@@ -18,7 +18,7 @@ Source4:	ftp://ftp.isi.edu/in-notes/tar/RFCs2001-2500.tar.gz
 Source5:	ftp://ftp.isi.edu/in-notes/tar/RFCs2501-3000.tar.gz
 Source6:	ftp://ftp.isi.edu/in-notes/tar/RFCs3001-latest.tar.gz
 Source7:	ftp://ftp.isi.edu/in-notes/%{name}-index.txt
-Source8:	ftp://ftp.isi.edu/in-notes/%{name}%{version}.txt
+#Source8:	ftp://ftp.isi.edu/in-notes/%{name}%{version}.txt
 Patch0:		%{name}.patch
 URL:		http://www.rfc.net/
 %if %{!?_with_ps:%{!?_without_pdf:1}%{?_without_pdf:0}}%{?_with_ps:1}
