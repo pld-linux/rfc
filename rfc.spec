@@ -7,7 +7,7 @@
 Summary:	RFC documents
 Summary(pl):	Dokumenty RFC
 Name:		rfc
-Version:	3449
+Version:	3455
 %define		rfcindex_version	1.2
 Release:	1
 License:	distributable
