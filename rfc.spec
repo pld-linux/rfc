@@ -2,7 +2,7 @@ Summary:	RFC documents
 Summary(pl):	Dokumenty RFC
 Name:		rfc
 Version:	3275
-Release:	2
+Release:	3
 License:	distributable
 Group:		Documentation
 Source0:	ftp://ftp.isi.edu/in-notes/tar/RFCs0001-0500.tar.gz
@@ -14,9 +14,8 @@ Source5:	ftp://ftp.isi.edu/in-notes/tar/RFCs2501-3000.tar.gz
 Source6:	ftp://ftp.isi.edu/in-notes/tar/RFCs3001-latest.tar.gz
 Source7:	ftp://ftp.isi.edu/in-notes/%{name}-index.txt
 Source8:	ftp://ftp.isi.edu/in-notes/%{name}%{version}.txt
-# Missing from RFCs0001-0500.tar.gz (newer)
-# Temporarily this is not necessary.
-# Source10:	RFCs-omited.tar.gz
+Source9:	ftp://ftp.isi.edu/in-notes/%{name}3246.txt
+Source10:	ftp://ftp.isi.edu/in-notes/%{name}3248.txt
 Patch0:		%{name}.patch
 URL:		http://www.rfc.net/
 BuildRequires:	enscript
@@ -51,7 +50,7 @@ poszczególnych dokumentów.
 Summary:	Commonly referenced RFC documents
 Summary(pl):	Najczê¶ciej wymieniane dokumenty RFC
 Group:		Documentation
-Requires:	%{name}-index = %{version}
+Requires:	%{name}-index >= %{version}
 Obsoletes:	%{name}-text
 
 %description text-basic
@@ -66,7 +65,7 @@ których odnosi siê dokumentacja innych pakietów.
 Summary:	RFC documents - pure text version
 Summary(pl):	Wersja czysto tekstowa dokumentów RFC
 Group:		Documentation
-Requires:	%{name}-index = %{version}
+Requires:	%{name}-index >= %{version}
 Provides:	%{name}-text-basic
 Obsoletes:	%{name}-text-basic
 
@@ -84,7 +83,7 @@ postscriptowej i PDF.
 Summary:	RFC documents - PostScript version
 Summary(pl):	Wersja postscriptowa dokumentów RFC
 Group:		Documentation
-Requires:	%{name}-index = %{version}
+Requires:	%{name}-index >= %{version}
 
 %description ps
 PostScript version of RFC (Request For Comments) documents.
@@ -96,7 +95,7 @@ Wersja postscriptowa dokumentów RFC (Request For Comments).
 Summary:	RFC documents - pdf version
 Summary(pl):	Wersja postscriptowa dokumentów RFC
 Group:		Documentation
-Requires:	%{name}-index = %{version}
+Requires:	%{name}-index >= %{version}
 
 %description pdf
 RFC (Request For Comments) documents in Adobe PDF format.
@@ -110,6 +109,8 @@ Dokumenty RFC (Request For Comments) w formacie Adobe PDF.
 
 %build
 rm -f rfc2328.hastabs.txt
+install %{SOURCE9} .
+install %{SOURCE10} .
 
 # These are broken/unreadable by gv
 mv -f rfc1144.ps rfc1144.orig.ps
