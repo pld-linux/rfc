@@ -7,7 +7,7 @@
 Summary:	RFC documents
 Summary(pl):	Dokumenty RFC
 Name:		rfc
-Version:	3365
+Version:	3371
 %define		rfcindex_version	1.2
 Release:	1
 License:	distributable
@@ -23,7 +23,6 @@ Source7:	ftp://ftp.isi.edu/in-notes/%{name}-index.txt
 Source10:	http://www.kernighan.demon.co.uk/software/rfcindex-%{rfcindex_version}
 Patch0:		%{name}.patch
 Patch1:		%{name}-index-typo.patch
-Patch2:		%{name}-index-numbering.patch
 Patch10:	rfcindex-pld.patch
 URL:		http://www.rfc.net/
 %if %{!?_with_ps:%{!?_without_pdf:1}%{?_without_pdf:0}}%{?_with_ps:1}
@@ -158,7 +157,6 @@ Dokumenty RFC (Request For Comments) w formacie Adobe PDF.
 %patch0 -p0
 install %{SOURCE7} .
 %patch1 -p0
-%patch2 -p0
 
 %if %{!?_without_html_index:1}%{?_without_html_index:0}
 install %{SOURCE10} rfcindex
