@@ -152,7 +152,7 @@ mv -f rfc546.pdf rfc546-pict.pdf
 %if %{with ps}
 for n in 1144 1305 ; do
 	gs -q -dNOPAUSE -dBATCH -dSAFER -sDEVICE=pswrite \
-	   -sOutputFile=rfc$n.ps -c save pop -f rfc$n.pdf
+		-sOutputFile=rfc$n.ps -c save pop -f rfc$n.pdf
 done
 %endif
 
@@ -171,7 +171,7 @@ for i in rfc[1-9]*.txt ; do
 	if [ ! -e $BASE.ps ] ; then
 		# avoid stopping on errors ; .ps file may be correct
 		# even after processing problems
-		enscript --margin=54 -B  -fCourier11 -p $BASE.ps $i 2>/dev/null ||:
+		enscript --margin=54 -B -fCourier11 -p $BASE.ps $i 2>/dev/null ||:
 	fi
 %endif
 %if %{with pdf}
@@ -191,7 +191,7 @@ install -d $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/postscript/{{0,1,2}{0,1,2,3,4,5,
 
 find . -name 'rfc[1-9]*.txt' -print | xargs gzip -9
 %if %{with ps}
-find . -name 'rfc[1-9]*.ps'  -print | xargs gzip -9
+find . -name 'rfc[1-9]*.ps' -print | xargs gzip -9
 %endif
 
 # install rfc[1-9]*.txt* $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/text
