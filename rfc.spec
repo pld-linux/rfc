@@ -7,9 +7,9 @@
 Summary:	RFC documents
 Summary(pl):	Dokumenty RFC
 Name:		rfc
-Version:	3301
+Version:	3348
 %define		rfcindex_version	1.2
-Release:	6
+Release:	1
 License:	distributable
 Group:		Documentation
 Source0:	ftp://ftp.isi.edu/in-notes/tar/RFCs0001-0500.tar.gz
@@ -30,7 +30,7 @@ BuildRequires:	enscript
 BuildRequires:	ghostscript
 %endif
 %if %{!?_without_html_index:1}%{?_without_html_index:0}
-BuildRequires:	perl
+BuildRequires:	perl-devel
 %endif
 BuildRequires:	xpdf
 BuildArch:	noarch
@@ -158,7 +158,7 @@ Dokumenty RFC (Request For Comments) w formacie Adobe PDF.
 install %{SOURCE7} .
 
 %if %{!?_without_html_index:1}%{?_without_html_index:0}
-install %{SOURCE10} .
+install %{SOURCE10} rfcindex
 %patch10 -p0
 %endif
 
@@ -215,8 +215,9 @@ done
 %endif
 
 %if %{!?_without_html_index:1}%{?_without_html_index:0}
-./rfcindex-%{rfcindex_version} --gzip --by100 --nodate --nocredit \
+./rfcindex --gzip --by100 --nodate --nocredit \
 	--base="file://%{_defaultdocdir}/RFC/" rfc-index.txt >rfc-index.html
+pod2man rfcindex > rfcindex.1
 %endif
 
 %install
@@ -229,8 +230,9 @@ install rfc-index.txt $RPM_BUILD_ROOT%{_defaultdocdir}/RFC
 
 %if %{!?_without_html_index:1}%{?_without_html_index:0}
 install rfc-index.html      $RPM_BUILD_ROOT%{_defaultdocdir}/RFC
-install -d $RPM_BUILD_ROOT%{_bindir}
-install rfcindex-%{rfcindex_version} $RPM_BUILD_ROOT%{_bindir}/rfcindex
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1}
+install rfcindex $RPM_BUILD_ROOT%{_bindir}/rfcindex
+install rfcindex.1 $RPM_BUILD_ROOT%{_mandir}/man1
 %endif
 
 find . -name 'rfc[1-9]*.txt' -print | xargs gzip -9
@@ -331,4 +333,5 @@ rm -rf $RPM_BUILD_ROOT
 %files -n rfcindex
 %defattr(644,root,root,755)
 %{_bindir}/rfcindex
+%{_mandir}/man1/*
 %endif
