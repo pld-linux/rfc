@@ -2,7 +2,7 @@ Summary:	RFC documents
 Summary(pl):	Dokumenty RFC
 Name:		rfc
 Version:	3253
-Release:	3
+Release:	4
 License:	distributable
 Group:		Documentation
 Source0:	ftp://ftp.isi.edu/in-notes/tar/RFCs0001-0500.tar.gz
@@ -97,7 +97,7 @@ rm -f rfc2328.hastabs.txt
 # These are broken/unreadable by gv
 mv -f rfc1144.ps rfc1144.orig.ps
 mv -f rfc1279.ps rfc1279.orig.ps
-mv -f rfc1291.ps rfc1291.orig.ps
+mv -f rfc1291.ps rfc1291.orig.ps # FIX! check again
 
 # These are unreadable because of character spacing problems
 mv -f rfc1125.pdf rfc1125.orig.pdf
@@ -118,7 +118,7 @@ done
 for n in 1119 1124 1128 1129 1131 ; do
 	echo -e '\nThe text below was generated from PostScript by pstotext.' >> rfc$n.txt
 	echo -e '----------------------------------------------------------------------\n' >> rfc$n.txt
-	pstotext rfc$n.ps >> rfc$n.txt
+	sh -c "pstotext - < rfc$n.ps >> rfc$n.txt; exit 0"
 done
 
 # Generate .ps and .pdf versions when they are not provided
