@@ -1,8 +1,8 @@
 Summary:	RFC documents
 Summary(pl):	Dokumenty RFC
 Name:		rfc
-Version:	3240
-Release:	3
+Version:	3244
+Release:	1
 License:	distributable
 Group:		Documentation
 Source0:	ftp://ftp.isi.edu/in-notes/tar/RFCs0001-0500.tar.gz
@@ -14,7 +14,8 @@ Source5:	ftp://ftp.isi.edu/in-notes/tar/RFCs2501-3000.tar.gz
 Source6:	ftp://ftp.isi.edu/in-notes/tar/RFCs3001-latest.tar.gz
 Source7:	ftp://ftp.isi.edu/in-notes/%{name}-index.txt
 # Missing from RFCs0001-0500.tar.gz (newer)
-Source10:	RFCs-omited.tar.gz
+# Temporarily this is not necessary.
+# Source10:	RFCs-omited.tar.gz
 Patch0:		%{name}.patch
 URL:		http://www.rfc.net/
 BuildRequires:	enscript
@@ -87,7 +88,7 @@ RFC (Request For Comments) documents in Adobe PDF format.
 Dokumenty RFC (Request For Comments) w formacie Adobe PDF.
 
 %prep
-%setup -q -c -a1 -a2 -a3 -a4 -a5 -a6 -a10
+%setup -q -c -a1 -a2 -a3 -a4 -a5 -a6
 %patch0 -p0
 
 %build
