@@ -1,7 +1,7 @@
 Summary:	RFC documents
 Summary(pl):	Dokumenty RFC
 Name:		rfc
-Version:	3244
+Version:	3253
 Release:	1
 License:	distributable
 Group:		Documentation
@@ -16,6 +16,7 @@ Source7:	ftp://ftp.isi.edu/in-notes/%{name}-index.txt
 # Missing from RFCs0001-0500.tar.gz (newer)
 # Temporarily this is not necessary.
 # Source10:	RFCs-omited.tar.gz
+Source11:	ftp://ftp.isi.edu/in-notes/%{name}3253.txt
 Patch0:		%{name}.patch
 URL:		http://www.rfc.net/
 BuildRequires:	enscript
@@ -93,6 +94,7 @@ Dokumenty RFC (Request For Comments) w formacie Adobe PDF.
 
 %build
 rm -f rfc2328.hastabs.txt
+cp -f %{SOURCE11} .
 
 # These are broken/unreadable by gv
 mv -f rfc1144.ps rfc1144.orig.ps
