@@ -6,7 +6,7 @@
 Summary:	RFC documents
 Summary(pl):	Dokumenty RFC
 Name:		rfc
-Version:	3293
+Version:	3295
 Release:	1
 License:	distributable
 Group:		Documentation
