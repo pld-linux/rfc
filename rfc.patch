@@ -1,10 +1,9 @@
 --- rfc1195.ps.orig	Thu Dec 20 01:26:25 1990
 +++ rfc1195.ps	Sun Feb 24 23:57:23 2002
-@@ -2342,7 +2342,7 @@
+@@ -2342,6 +2342,7 @@
  (Connection\255Less Network Protocol) h
  27010 -24325 M
  32412 -24325 M
--378 version provides few options to-25525 M
 +37814 -25525 M
  5402 -25525 M
  (\(ISO 8473, the OSI connectionless network layer protocol ) h
