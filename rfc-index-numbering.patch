@@ -1,0 +1,11 @@
+--- rfc-index.txt.orig	Sat Aug 24 00:44:17 2002
++++ rfc-index.txt	Sat Aug 24 00:44:17 2002
+@@ -11935,7 +11935,7 @@
+      Charlton, M. Gasson, G. Gybels, M. Spanner, A. van Wijk. August 2002.
+      (Format: TXT=33894 bytes) (Status: INFORMATIONAL)
+ 
+-3352 Overview of IP Multicast in a Multi-Protocol Label Switching
++3353 Overview of IP Multicast in a Multi-Protocol Label Switching
+      (MPLS) Environment. D. Ooms, B. Sales, W. Livens, A. Acharya, F.
+      Griffoul, F. Ansari. August 2002. (Format: TXT=65860 bytes) (Status:
+      INFORMATIONAL)
