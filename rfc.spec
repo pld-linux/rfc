@@ -2,12 +2,14 @@
 # Conditionals:
 # _with_ps
 # _without_pdf
+# _without_html_index
 
 Summary:	RFC documents
 Summary(pl):	Dokumenty RFC
 Name:		rfc
 Version:	3301
-Release:	5
+%define		rfcindex_version	1.2
+Release:	6
 License:	distributable
 Group:		Documentation
 Source0:	ftp://ftp.isi.edu/in-notes/tar/RFCs0001-0500.tar.gz
@@ -19,11 +21,16 @@ Source5:	ftp://ftp.isi.edu/in-notes/tar/RFCs2501-3000.tar.gz
 Source6:	ftp://ftp.isi.edu/in-notes/tar/RFCs3001-latest.tar.gz
 Source7:	ftp://ftp.isi.edu/in-notes/%{name}-index.txt
 #Source8:	ftp://ftp.isi.edu/in-notes/%{name}%{version}.txt
+Source10:	http://www.kernighan.demon.co.uk/software/rfcindex-%{rfcindex_version}
 Patch0:		%{name}.patch
+Patch10:	rfcindex-pld.patch
 URL:		http://www.rfc.net/
 %if %{!?_with_ps:%{!?_without_pdf:1}%{?_without_pdf:0}}%{?_with_ps:1}
 BuildRequires:	enscript
 BuildRequires:	ghostscript
+%endif
+%if %{!?_without_html_index:1}%{?_without_html_index:0}
+BuildRequires:	perl
 %endif
 BuildRequires:	xpdf
 BuildArch:	noarch
@@ -50,6 +57,39 @@ about document title, authors, status, size, etc.
 Plik indeksowy dokumentów RFC (Request For Comments) zawieraj±cy
 informacje takie, jak: tytu³, autorzy, status, rozmiar itp. dla
 poszczególnych dokumentów.
+
+%if %{!?_without_html_index:1}%{?_without_html_index:0}
+%package	index-html
+Summary:	HTML-ized index of RFC documents
+Summary(pl):	Indeks dokumentów RFC w HTML-u
+Group:		Documentation
+Requires:	%{name}-text >= %{version}-%{release}
+
+%description index-html
+Index file for RFC (Request For Comments) documents containing info
+about document title, authors, status, size, etc.
+
+%description index-html -l pl
+Plik indeksowy dokumentów RFC (Request For Comments) zawieraj±cy
+informacje takie, jak: tytu³, autorzy, status, rozmiar itp. dla
+poszczególnych dokumentów.
+
+%package -n	rfcindex
+Summary:	Script to generate HTML-ized index of RFC documents
+Summary(pl):	Indeks dokumentów RFC
+Group:		Utilities
+Requires:	perl
+Requires:	%{name}-index
+
+%description -n rfcindex
+Perl script that reads the plain rfc-index.txt and outputs an HTML
+index file with hyperlinks to appropriate RFCs.
+
+%description -n rfcindex -l pl
+Skrypt w perlu generujacy na podstawie tekstowego pliku rfc-index.txt
+indeks w HTML-u zawieraj±cy przekierowania do odpowiednich dokumentów
+RFC.
+%endif
 
 %package	text-basic
 Summary:	Commonly referenced RFC documents
@@ -115,6 +155,12 @@ Dokumenty RFC (Request For Comments) w formacie Adobe PDF.
 %prep
 %setup -q -c -a1 -a2 -a3 -a4 -a5 -a6
 %patch0 -p0
+install %{SOURCE7} .
+
+%if %{!?_without_html_index:1}%{?_without_html_index:0}
+install %{SOURCE10} .
+%patch10 -p0
+%endif
 
 %build
 rm -f rfc2328.hastabs.txt
@@ -168,13 +214,24 @@ for i in rfc[1-9]*.txt ; do
 done
 %endif
 
+%if %{!?_without_html_index:1}%{?_without_html_index:0}
+./rfcindex-%{rfcindex_version} --gzip --by100 --nodate --nocredit \
+	--base="file://%{_defaultdocdir}/RFC/" rfc-index.txt >rfc-index.html
+%endif
+
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/text/{{0,1,2}{0,1,2,3,4,5,6,7,8,9},30,31,32,33}00
 install -d $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/pdf/{{0,1,2}{0,1,2,3,4,5,6,7,8,9},30,31,32,33}00
 install -d $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/postscript/{{0,1,2}{0,1,2,3,4,5,6,7,8,9},30,31,32,33}00
 
-install %{SOURCE7} $RPM_BUILD_ROOT%{_defaultdocdir}/RFC
+install rfc-index.txt $RPM_BUILD_ROOT%{_defaultdocdir}/RFC
+
+%if %{!?_without_html_index:1}%{?_without_html_index:0}
+install rfc-index.html      $RPM_BUILD_ROOT%{_defaultdocdir}/RFC
+install -d $RPM_BUILD_ROOT%{_bindir}
+install rfcindex-%{rfcindex_version} $RPM_BUILD_ROOT%{_bindir}/rfcindex
+%endif
 
 find . -name 'rfc[1-9]*.txt' -print | xargs gzip -9
 %if %{!?_with_ps:0}%{?_with_ps:1}
@@ -206,7 +263,6 @@ done
 install rfc[0-9].ps* $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/postscript/0000
 %endif
 
-# install rfc*.html      $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/html
 BASIC="rfc1032.txt rfc1033.txt rfc1034.txt rfc1035.txt rfc1101.txt"\
 "      rfc1122.txt rfc1123.txt rfc1183.txt rfc1274.txt rfc1279.txt"\
 "      rfc1308.txt rfc1309.txt rfc1321.txt rfc1348.txt rfc1413.txt"\
@@ -265,4 +321,14 @@ rm -rf $RPM_BUILD_ROOT
 %files pdf
 %defattr(644,root,root,755)
 %{_defaultdocdir}/RFC/pdf
+%endif
+
+%if %{!?_without_html_index:1}%{?_without_html_index:0}
+%files index-html
+%defattr(644,root,root,755)
+%{_defaultdocdir}/RFC/rfc-index.html
+
+%files -n rfcindex
+%defattr(644,root,root,755)
+%{_bindir}/rfcindex
 %endif
