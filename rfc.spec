@@ -283,18 +283,20 @@ BASIC="rfc1032.txt rfc1033.txt rfc1034.txt rfc1035.txt rfc1101.txt"\
 "      rfc2221.txt rfc2222.txt rfc2228.txt rfc2230.txt rfc2234.txt"\
 "      rfc2243.txt rfc2245.txt rfc2246.txt rfc2247.txt rfc2251.txt"\
 "      rfc2252.txt rfc2253.txt rfc2254.txt rfc2255.txt rfc2256.txt"\
-"      rfc2279.txt rfc2289.txt rfc2307.txt rfc2308.txt rfc2317.txt"\
-"      rfc2342.txt rfc2359.txt rfc2373.txt rfc2374.txt rfc2375.txt"\
-"      rfc2377.txt rfc2418.txt rfc2444.txt rfc2485.txt rfc2487.txt"\
-"      rfc2489.txt rfc2535.txt rfc2536.txt rfc2537.txt rfc2538.txt"\
-"      rfc2539.txt rfc2540.txt rfc2541.txt rfc2553.txt rfc2595.txt"\
-"      rfc2596.txt rfc2671.txt rfc2672.txt rfc2673.txt rfc2683.txt"\
+"      rfc2279.txt rfc2289.txt rfc2293.txt rfc2294.txt rfc2307.txt"\
+"      rfc2308.txt rfc2317.txt rfc2342.txt rfc2359.txt rfc2373.txt"\
+"      rfc2374.txt rfc2375.txt rfc2377.txt rfc2418.txt rfc2444.txt"\
+"      rfc2485.txt rfc2487.txt rfc2489.txt rfc2535.txt rfc2536.txt"\
+"      rfc2537.txt rfc2538.txt rfc2539.txt rfc2540.txt rfc2541.txt"\
+"      rfc2553.txt rfc2587.txt rfc2589.txt rfc2595.txt rfc2596.txt"\
+"      rfc2649.txt rfc2671.txt rfc2672.txt rfc2673.txt rfc2683.txt"\
 "      rfc2696.txt rfc2713.txt rfc2714.txt rfc2782.txt rfc2798.txt"\
 "      rfc2825.txt rfc2826.txt rfc2828.txt rfc2829.txt rfc2830.txt"\
 "      rfc2831.txt rfc2845.txt rfc2849.txt rfc2874.txt rfc2891.txt"\
 "      rfc2915.txt rfc2929.txt rfc2930.txt rfc2931.txt rfc2945.txt"\
-"      rfc3007.txt rfc3008.txt rfc3062.txt rfc3088.txt rfc3090.txt"\
-"      rfc3110.txt rfc3174.txt rfc951.txt  rfc952.txt  rfc959.txt"
+"      rfc3007.txt rfc3008.txt rfc3045.txt rfc3062.txt rfc3088.txt"\
+"      rfc3090.txt rfc3110.txt rfc3112.txt rfc3174.txt rfc3296.txt"\
+"      rfc3377.txt rfc3383.txt rfc951.txt  rfc952.txt  rfc959.txt"
 
 for i in $BASIC; do
 	install $i* $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/text
