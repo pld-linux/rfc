@@ -24,7 +24,7 @@ URL:		http://www.rfc.net/
 BuildRequires:	enscript
 BuildRequires:	ghostscript
 %endif
-BuildRequires:	xpdf
+BuildRequires:	xpdf-tools
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
