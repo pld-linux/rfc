@@ -7,7 +7,7 @@
 Summary:	RFC documents
 Summary(pl):	Dokumenty RFC
 Name:		rfc
-Version:	3455
+Version:	3470
 %define		rfcindex_version	1.2
 Release:	1
 License:	distributable
@@ -20,6 +20,8 @@ Source4:	ftp://ftp.isi.edu/in-notes/tar/RFCs2001-2500.tar.gz
 Source5:	ftp://ftp.isi.edu/in-notes/tar/RFCs2501-3000.tar.gz
 Source6:	ftp://ftp.isi.edu/in-notes/tar/RFCs3001-latest.tar.gz
 Source7:	ftp://ftp.isi.edu/in-notes/%{name}-index.txt
+# temporarily(?) missing from above tars:
+Source8:	not-issued-RFCs.tar.gz
 Source10:	http://www.kernighan.demon.co.uk/software/rfcindex-%{rfcindex_version}
 Patch0:		%{name}.patch
 Patch1:		%{name}-index-typo.patch
@@ -153,7 +155,7 @@ Dokumenty RFC (Request For Comments) w formacie Adobe PDF.
 %endif
 
 %prep
-%setup -q -c -a1 -a2 -a3 -a4 -a5 -a6
+%setup -q -c -a1 -a2 -a3 -a4 -a5 -a6 -a8
 %patch0 -p0
 install %{SOURCE7} .
 %patch1 -p0
@@ -223,9 +225,9 @@ pod2man rfcindex > rfcindex.1
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/text/{{0,1,2}{0,1,2,3,4,5,6,7,8,9},3{0,1,2,3,4}}00
-install -d $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/pdf/{{0,1,2}{0,1,2,3,4,5,6,7,8,9},3{0,1,2,3,4}}00
-install -d $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/postscript/{{0,1,2}{0,1,2,3,4,5,6,7,8,9},3{0,1,2,3,4}}00
+install -d $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/text/{{0,1,2}{0,1,2,3,4,5,6,7,8,9},3{0,1,2,3,4,5}}00
+install -d $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/pdf/{{0,1,2}{0,1,2,3,4,5,6,7,8,9},3{0,1,2,3,4,5}}00
+install -d $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/postscript/{{0,1,2}{0,1,2,3,4,5,6,7,8,9},3{0,1,2,3,4,5}}00
 
 install rfc-index.txt $RPM_BUILD_ROOT%{_defaultdocdir}/RFC
 
