@@ -2,9 +2,23 @@ Summary:	RFC documents
 Summary(pl):	Dokumenty RFC
 Name:		rfc
 Version:	0.1
-Release:	3
+Release:	4
 License:	distributable
 Group:		Documentation
+Group(cs):	Dokumentace
+Group(da):	Dokumentationen
+Group(de):	Dokumentation
+Group(es):	DocumentaciÛn
+Group(fr):	Documentacion
+Group(is):	Skjˆlun
+Group(it):	Documentazione
+Group(no):	Dokumentasjonen
+Group(pl):	Dokumentacja
+Group(pt):	DocumentaÁ„o
+Group(ru):	‰œÀ’Õ≈Œ‘¡√…—
+Group(sl):	Dokumentacija
+Group(sv):	Dokumentation
+Group(uk):	‰œÀ’Õ≈Œ‘¡√¶—
 Source0:	ftp://ftp.isi.edu/in-notes/tar/RFCs0001-0500.tar.gz
 Source1:	ftp://ftp.isi.edu/in-notes/tar/RFCs0501-1000.tar.gz
 Source2:	ftp://ftp.isi.edu/in-notes/tar/RFCs1001-1500.tar.gz
@@ -12,17 +26,17 @@ Source3:	ftp://ftp.isi.edu/in-notes/tar/RFCs1501-2000.tar.gz
 Source4:	ftp://ftp.isi.edu/in-notes/tar/RFCs2001-2500.tar.gz
 Source5:	ftp://ftp.isi.edu/in-notes/tar/RFCs2501-3000.tar.gz
 Source6:	ftp://ftp.isi.edu/in-notes/tar/RFCs3001-latest.tar.gz
-Source7:	ftp://ftp.isi.edu/in-notes/rfc-index.txt
-URL:		???
+Source7:	ftp://ftp.isi.edu/in-notes/%{name}-index.txt
+URL:		http://www.rfc.net/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-RFC (Request For Comments) documents are actual and suggested
-Internet standards.
+RFC (Request For Comments) documents are actual and suggested Internet
+standards.
 
 %description -l pl
-Dokumenty RFC (Request For Comments) zawieraj± opis obowi±zuj±cych
-i proponowanych standardÛw internetowych.
+Dokumenty RFC (Request For Comments) zawieraj± opis obowi±zuj±cych i
+proponowanych standardÛw internetowych.
 
 %prep
 %setup -q -c -a1 -a2 -a3 -a4 -a5 -a6 -a7
