@@ -1,7 +1,7 @@
 #
 # Conditional build:
-%bcond_with ps		# build package with RFCs in PostScript format too
-%bcond_without pdf	# don't build package with RFCs in PDF format
+%bcond_with	ps		# build package with RFCs in PostScript format too
+%bcond_without	pdf	# don't build package with RFCs in PDF format
 
 Summary:	RFC documents
 Summary(es):	Los documentos RFC
