@@ -30,7 +30,7 @@ Source7:	ftp://ftp.isi.edu/in-notes/tar/RFCs3501-4000.tar.gz
 Source8:	ftp://ftp.isi.edu/in-notes/tar/RFCs4001-4500.tar.gz
 # Source8-md5:	f747637be7b625724f4f1fa355dc9ec2
 Source9:	RFCs-missing-from-tar.tar.gz
-# Source2-md5:	f34ef685f0b1ecfdd36ce2f0ec99e64e
+# Source9-md5:	f34ef685f0b1ecfdd36ce2f0ec99e64e
 Patch0:		%{name}.patch
 URL:		http://www.rfc.net/
 %if %{with ps} || %{with pdf}
