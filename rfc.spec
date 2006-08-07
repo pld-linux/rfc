@@ -7,12 +7,12 @@ Summary:	RFC documents
 Summary(es):	Los documentos RFC
 Summary(pl):	Dokumenty RFC
 Name:		rfc
-Version:	3498
-Release:	6
+Version:	4498
+Release:	0.1
 License:	distributable
 Group:		Documentation
 Source0:	ftp://ftp.isi.edu/in-notes/tar/RFCs0001-0500.tar.gz
-# Source0-md5:	b592ed689022655d596dc5aa5d80ddfb
+# Source0-md5:	99cec264ad50efa8b94d312f09b4f108
 Source1:	ftp://ftp.isi.edu/in-notes/tar/RFCs0501-1000.tar.gz
 # Source1-md5:	96d468b8ecb513e642ca0e9b4032a150
 Source2:	ftp://ftp.isi.edu/in-notes/tar/RFCs1001-1500.tar.gz
@@ -24,7 +24,13 @@ Source4:	ftp://ftp.isi.edu/in-notes/tar/RFCs2001-2500.tar.gz
 Source5:	ftp://ftp.isi.edu/in-notes/tar/RFCs2501-3000.tar.gz
 # Source5-md5:	0799d01a6776e69b5d3ec3b348013c79
 Source6:	ftp://ftp.isi.edu/in-notes/tar/RFCs3001-3500.tar.gz
-# Source6-md5:	da1814827ee04c396944f2527558207e
+# Source6-md5:	55b806dc69f0c901552434556402b8a5
+Source7:	ftp://ftp.isi.edu/in-notes/tar/RFCs3501-4000.tar.gz
+# Source7-md5:	866c41972f9656635c81181b0b9e4dca
+Source8:	ftp://ftp.isi.edu/in-notes/tar/RFCs4001-4500.tar.gz
+# Source8-md5:	f747637be7b625724f4f1fa355dc9ec2
+Source9:	RFCs-missing-from-tar.tar.gz
+# Source2-md5:	f34ef685f0b1ecfdd36ce2f0ec99e64e
 Patch0:		%{name}.patch
 URL:		http://www.rfc.net/
 %if %{with ps} || %{with pdf}
@@ -128,7 +134,7 @@ formato Adobe PDF.
 Dokumenty RFC (Request For Comments) w formacie Adobe PDF.
 
 %prep
-%setup -q -c -a1 -a2 -a3 -a4 -a5 -a6
+%setup -q -c -a1 -a2 -a3 -a4 -a5 -a6 -a7 -a8 -a9
 %patch0 -p0
 
 %build
@@ -185,9 +191,9 @@ done
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/text/{{0,1,2}{0,1,2,3,4,5,6,7,8,9},3{0,1,2,3,4}}00
-install -d $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/pdf/{{0,1,2}{0,1,2,3,4,5,6,7,8,9},3{0,1,2,3,4}}00
-install -d $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/postscript/{{0,1,2}{0,1,2,3,4,5,6,7,8,9},3{0,1,2,3,4}}00
+install -d $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/text/{{0,1,2,3}{0,1,2,3,4,5,6,7,8,9},4{0,1,2,3,4}}00
+install -d $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/pdf/{{0,1,2,3}{0,1,2,3,4,5,6,7,8,9},4{0,1,2,3,4}}00
+install -d $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/postscript/{{0,1,2,3}{0,1,2,3,4,5,6,7,8,9},4{0,1,2,3,4}}00
 
 find . -name 'rfc[1-9]*.txt' -print | xargs gzip -9
 %if %{with ps}
@@ -195,7 +201,7 @@ find . -name 'rfc[1-9]*.ps' -print | xargs gzip -9
 %endif
 
 # install rfc[1-9]*.txt* $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/text
-for i in {0,1,2}{0,1,2,3,4,5,6,7,8,9} 3{0,1,2,3,4}; do
+for i in {0,1,2,3}{0,1,2,3,4,5,6,7,8,9} 4{0,1,2,3,4}; do
 	install rfc`echo $i|sed s/^0\*//g`[0-9][0-9][a.]*txt* \
 		$RPM_BUILD_ROOT%{_defaultdocdir}/RFC/text/${i}00
 done
@@ -203,7 +209,7 @@ install rfc[0-9].txt* $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/text/0000
 
 # install rfc*.pdf       $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/pdf
 %if %{with pdf}
-for i in {0,1,2}{0,1,2,3,4,5,6,7,8,9} 3{0,1,2,3,4} ; do
+for i in {0,1,2,3}{0,1,2,3,4,5,6,7,8,9} 4{0,1,2,3,4} ; do
 	install rfc`echo $i|sed s/^0\*//g`[0-9][0-9][a.-]*pdf \
 		$RPM_BUILD_ROOT%{_defaultdocdir}/RFC/pdf/${i}00
 done
@@ -212,7 +218,7 @@ install rfc[0-9].pdf $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/pdf/0000
 
 %if %{with ps}
 # install rfc*.ps        $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/postscript
-for i in {0,1,2}{0,1,2,3,4,5,6,7,8,9} 3{0,1,2,3,4} ; do
+for i in {0,1,2,3}{0,1,2,3,4,5,6,7,8,9} 4{0,1,2,3,4} ; do
 	install rfc`echo $i|sed s/^0\*//g`[0-9][0-9][a.-]*ps* \
 		$RPM_BUILD_ROOT%{_defaultdocdir}/RFC/postscript/${i}00
 done
