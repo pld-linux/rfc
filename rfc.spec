@@ -8,7 +8,7 @@ Summary(es):	Los documentos RFC
 Summary(pl):	Dokumenty RFC
 Name:		rfc
 Version:	4498
-Release:	1
+Release:	2
 License:	distributable
 Group:		Documentation
 Source0:	ftp://ftp.isi.edu/in-notes/tar/RFCs0001-0500.tar.gz
