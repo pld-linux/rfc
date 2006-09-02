@@ -59,7 +59,7 @@ Summary(es):	Documentos RFC repetidamente referidos
 Summary(pl):	Najczê¶ciej wymieniane dokumenty RFC
 Group:		Documentation
 Requires:	%{name}-index >= %{version}
-Obsoletes:	%{name}-text
+Obsoletes:	rfc-text
 
 %description text-basic
 This is pure text version of basic RFC (Request For Comments)
@@ -81,7 +81,7 @@ Summary(pl):	Wersja czysto tekstowa dokumentów RFC
 Group:		Documentation
 Requires:	%{name}-index >= %{version}
 Provides:	%{name}-text-basic
-Obsoletes:	%{name}-text-basic
+Obsoletes:	rfc-text-basic
 
 %description text
 This is pure text version of RFC (Request For Comments) documents. The
@@ -191,38 +191,38 @@ done
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/text/{{0,1,2,3}{0,1,2,3,4,5,6,7,8,9},4{0,1,2,3,4}}00
-install -d $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/pdf/{{0,1,2,3}{0,1,2,3,4,5,6,7,8,9},4{0,1,2,3,4}}00
-install -d $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/postscript/{{0,1,2,3}{0,1,2,3,4,5,6,7,8,9},4{0,1,2,3,4}}00
+install -d $RPM_BUILD_ROOT%{_docdir}/RFC/text/{{0,1,2,3}{0,1,2,3,4,5,6,7,8,9},4{0,1,2,3,4}}00
+install -d $RPM_BUILD_ROOT%{_docdir}/RFC/pdf/{{0,1,2,3}{0,1,2,3,4,5,6,7,8,9},4{0,1,2,3,4}}00
+install -d $RPM_BUILD_ROOT%{_docdir}/RFC/postscript/{{0,1,2,3}{0,1,2,3,4,5,6,7,8,9},4{0,1,2,3,4}}00
 
 find . -name 'rfc[1-9]*.txt' -print | xargs gzip -9
 %if %{with ps}
 find . -name 'rfc[1-9]*.ps' -print | xargs gzip -9
 %endif
 
-# install rfc[1-9]*.txt* $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/text
+# install rfc[1-9]*.txt* $RPM_BUILD_ROOT%{_docdir}/RFC/text
 for i in {0,1,2,3}{0,1,2,3,4,5,6,7,8,9} 4{0,1,2,3,4}; do
 	install rfc`echo $i|sed s/^0\*//g`[0-9][0-9][a.]*txt* \
-		$RPM_BUILD_ROOT%{_defaultdocdir}/RFC/text/${i}00
+		$RPM_BUILD_ROOT%{_docdir}/RFC/text/${i}00
 done
-install rfc[0-9].txt* $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/text/0000
+install rfc[0-9].txt* $RPM_BUILD_ROOT%{_docdir}/RFC/text/0000
 
-# install rfc*.pdf       $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/pdf
+# install rfc*.pdf       $RPM_BUILD_ROOT%{_docdir}/RFC/pdf
 %if %{with pdf}
 for i in {0,1,2,3}{0,1,2,3,4,5,6,7,8,9} 4{0,1,2,3,4} ; do
 	install rfc`echo $i|sed s/^0\*//g`[0-9][0-9][a.-]*pdf \
-		$RPM_BUILD_ROOT%{_defaultdocdir}/RFC/pdf/${i}00
+		$RPM_BUILD_ROOT%{_docdir}/RFC/pdf/${i}00
 done
-install rfc[0-9].pdf $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/pdf/0000
+install rfc[0-9].pdf $RPM_BUILD_ROOT%{_docdir}/RFC/pdf/0000
 %endif
 
 %if %{with ps}
-# install rfc*.ps        $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/postscript
+# install rfc*.ps        $RPM_BUILD_ROOT%{_docdir}/RFC/postscript
 for i in {0,1,2,3}{0,1,2,3,4,5,6,7,8,9} 4{0,1,2,3,4} ; do
 	install rfc`echo $i|sed s/^0\*//g`[0-9][0-9][a.-]*ps* \
-		$RPM_BUILD_ROOT%{_defaultdocdir}/RFC/postscript/${i}00
+		$RPM_BUILD_ROOT%{_docdir}/RFC/postscript/${i}00
 done
-install rfc[0-9].ps* $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/postscript/0000
+install rfc[0-9].ps* $RPM_BUILD_ROOT%{_docdir}/RFC/postscript/0000
 %endif
 
 BASIC="rfc1032.txt rfc1033.txt rfc1034.txt rfc1035.txt rfc1101.txt"\
@@ -257,7 +257,7 @@ BASIC="rfc1032.txt rfc1033.txt rfc1034.txt rfc1035.txt rfc1101.txt"\
 "      rfc959.txt"
 
 for i in $BASIC; do
-	install $i* $RPM_BUILD_ROOT%{_defaultdocdir}/RFC/text
+	install $i* $RPM_BUILD_ROOT%{_docdir}/RFC/text
 done
 
 %clean
@@ -265,22 +265,22 @@ rm -rf $RPM_BUILD_ROOT
 
 %files text-basic
 %defattr(644,root,root,755)
-%dir %{_defaultdocdir}/RFC/text
-%{_defaultdocdir}/RFC/text/rfc*.txt*
+%dir %{_docdir}/RFC/text
+%{_docdir}/RFC/text/rfc*.txt*
 
 %files text
 %defattr(644,root,root,755)
-%dir %{_defaultdocdir}/RFC/text
-%{_defaultdocdir}/RFC/text/[0-9]*
+%dir %{_docdir}/RFC/text
+%{_docdir}/RFC/text/[0-9]*
 
 %if %{with ps}
 %files ps
 %defattr(644,root,root,755)
-%{_defaultdocdir}/RFC/postscript
+%{_docdir}/RFC/postscript
 %endif
 
 %if %{with pdf}
 %files pdf
 %defattr(644,root,root,755)
-%{_defaultdocdir}/RFC/pdf
+%{_docdir}/RFC/pdf
 %endif
