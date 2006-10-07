@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_with	ps		# build package with RFCs in PostScript format too
+%bcond_with	ps	# build package with RFCs in PostScript format too
 %bcond_without	pdf	# don't build package with RFCs in PDF format
 
 Summary:	RFC documents
@@ -8,13 +8,13 @@ Summary(es):	Los documentos RFC
 Summary(pl):	Dokumenty RFC
 Name:		rfc
 Version:	4498
-Release:	2
+Release:	3
 License:	distributable
 Group:		Documentation
 Source0:	ftp://ftp.isi.edu/in-notes/tar/RFCs0001-0500.tar.gz
-# Source0-md5:	99cec264ad50efa8b94d312f09b4f108
+# Source0-md5:	27efa3beef2ed328438de3b1e8193b70
 Source1:	ftp://ftp.isi.edu/in-notes/tar/RFCs0501-1000.tar.gz
-# Source1-md5:	96d468b8ecb513e642ca0e9b4032a150
+# Source1-md5:	cf0e181f77336f5a9ab69debc6cd036a
 Source2:	ftp://ftp.isi.edu/in-notes/tar/RFCs1001-1500.tar.gz
 # Source2-md5:	b3dc2d4fac7733014b537f914f09b78f
 Source3:	ftp://ftp.isi.edu/in-notes/tar/RFCs1501-2000.tar.gz
@@ -30,7 +30,7 @@ Source7:	ftp://ftp.isi.edu/in-notes/tar/RFCs3501-4000.tar.gz
 Source8:	ftp://ftp.isi.edu/in-notes/tar/RFCs4001-4500.tar.gz
 # Source8-md5:	f747637be7b625724f4f1fa355dc9ec2
 Source9:	RFCs-missing-from-tar.tar.bz2
-# Source9-md5:	1276481102f218c981e0324180bafd9f
+# Source9-md5:	ad7e6e40d0638e762b76f4722a353574
 Patch0:		%{name}.patch
 URL:		http://www.rfc.net/
 %if %{with ps} || %{with pdf}
