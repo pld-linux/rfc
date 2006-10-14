@@ -8,7 +8,7 @@ Summary(es):	Los documentos RFC
 Summary(pl):	Dokumenty RFC
 Name:		rfc
 Version:	4498
-Release:	3
+Release:	4
 License:	distributable
 Group:		Documentation
 Source0:	ftp://ftp.isi.edu/in-notes/tar/RFCs0001-0500.tar.gz
@@ -24,13 +24,11 @@ Source4:	ftp://ftp.isi.edu/in-notes/tar/RFCs2001-2500.tar.gz
 Source5:	ftp://ftp.isi.edu/in-notes/tar/RFCs2501-3000.tar.gz
 # Source5-md5:	0799d01a6776e69b5d3ec3b348013c79
 Source6:	ftp://ftp.isi.edu/in-notes/tar/RFCs3001-3500.tar.gz
-# Source6-md5:	55b806dc69f0c901552434556402b8a5
+# Source6-md5:	5e2673ebd98b83380dd932dced3c8152
 Source7:	ftp://ftp.isi.edu/in-notes/tar/RFCs3501-4000.tar.gz
-# Source7-md5:	866c41972f9656635c81181b0b9e4dca
+# Source7-md5:	f22b1a310f01cd3515ac1a5bb1ab8ccd
 Source8:	ftp://ftp.isi.edu/in-notes/tar/RFCs4001-4500.tar.gz
-# Source8-md5:	f747637be7b625724f4f1fa355dc9ec2
-Source9:	RFCs-missing-from-tar.tar.bz2
-# Source9-md5:	ad7e6e40d0638e762b76f4722a353574
+# Source8-md5:	91b73b785b6edeb498afeb735d880ddd
 Patch0:		%{name}.patch
 URL:		http://www.rfc.net/
 %if %{with ps} || %{with pdf}
@@ -134,7 +132,7 @@ formato Adobe PDF.
 Dokumenty RFC (Request For Comments) w formacie Adobe PDF.
 
 %prep
-%setup -q -c -a1 -a2 -a3 -a4 -a5 -a6 -a7 -a8 -a9
+%setup -q -c -a1 -a2 -a3 -a4 -a5 -a6 -a7 -a8
 %patch0 -p0
 
 %build
