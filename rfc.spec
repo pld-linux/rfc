@@ -4,8 +4,8 @@
 %bcond_without	pdf	# don't build package with RFCs in PDF format
 
 Summary:	RFC documents
-Summary(es.UTF-8):   Los documentos RFC
-Summary(pl.UTF-8):   Dokumenty RFC
+Summary(es.UTF-8):	Los documentos RFC
+Summary(pl.UTF-8):	Dokumenty RFC
 Name:		rfc
 Version:	4498
 Release:	4
@@ -53,8 +53,8 @@ proponowanych standardów internetowych.
 
 %package text-basic
 Summary:	Commonly referenced RFC documents
-Summary(es.UTF-8):   Documentos RFC repetidamente referidos
-Summary(pl.UTF-8):   Najczęściej wymieniane dokumenty RFC
+Summary(es.UTF-8):	Documentos RFC repetidamente referidos
+Summary(pl.UTF-8):	Najczęściej wymieniane dokumenty RFC
 Group:		Documentation
 Requires:	%{name}-index >= %{version}
 Obsoletes:	rfc-text
@@ -74,8 +74,8 @@ których odnosi się dokumentacja innych pakietów.
 
 %package text
 Summary:	RFC documents - pure text version
-Summary(es.UTF-8):   Documentos RFC - versión de texto puro
-Summary(pl.UTF-8):   Wersja czysto tekstowa dokumentów RFC
+Summary(es.UTF-8):	Documentos RFC - versión de texto puro
+Summary(pl.UTF-8):	Wersja czysto tekstowa dokumentów RFC
 Group:		Documentation
 Requires:	%{name}-index >= %{version}
 Provides:	%{name}-text-basic
@@ -99,8 +99,8 @@ postscriptowej i PDF.
 
 %package ps
 Summary:	RFC documents - PostScript version
-Summary(es.UTF-8):   Documentos RFC - versión PostScript
-Summary(pl.UTF-8):   Wersja postscriptowa dokumentów RFC
+Summary(es.UTF-8):	Documentos RFC - versión PostScript
+Summary(pl.UTF-8):	Wersja postscriptowa dokumentów RFC
 Group:		Documentation
 Requires:	%{name}-index >= %{version}
 
@@ -116,8 +116,8 @@ Wersja postscriptowa dokumentów RFC (Request For Comments).
 
 %package pdf
 Summary:	RFC documents - PDF version
-Summary(es.UTF-8):   Documentos RFC - versión PDF
-Summary(pl.UTF-8):   Wersja postscriptowa dokumentów RFC
+Summary(es.UTF-8):	Documentos RFC - versión PDF
+Summary(pl.UTF-8):	Wersja postscriptowa dokumentów RFC
 Group:		Documentation
 Requires:	%{name}-index >= %{version}
 
