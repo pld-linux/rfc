@@ -4,8 +4,8 @@
 %bcond_without	pdf	# don't build package with RFCs in PDF format
 
 Summary:	RFC documents
-Summary(es):	Los documentos RFC
-Summary(pl):	Dokumenty RFC
+Summary(es.UTF-8):   Los documentos RFC
+Summary(pl.UTF-8):   Dokumenty RFC
 Name:		rfc
 Version:	4498
 Release:	4
@@ -43,18 +43,18 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 RFC (Request For Comments) documents are actual and suggested Internet
 standards.
 
-%description -l es
-Los documentos RFC (Request For Comments: petición de comentarios) son
-los estándares actuales y sugeridos del Internet.
+%description -l es.UTF-8
+Los documentos RFC (Request For Comments: peticiÃ³n de comentarios) son
+los estÃ¡ndares actuales y sugeridos del Internet.
 
-%description -l pl
-Dokumenty RFC (Request For Comments) zawieraj± opis obowi±zuj±cych i
-proponowanych standardów internetowych.
+%description -l pl.UTF-8
+Dokumenty RFC (Request For Comments) zawierajÄ… opis obowiÄ…zujÄ…cych i
+proponowanych standardÃ³w internetowych.
 
 %package text-basic
 Summary:	Commonly referenced RFC documents
-Summary(es):	Documentos RFC repetidamente referidos
-Summary(pl):	Najczê¶ciej wymieniane dokumenty RFC
+Summary(es.UTF-8):   Documentos RFC repetidamente referidos
+Summary(pl.UTF-8):   NajczÄ™Å›ciej wymieniane dokumenty RFC
 Group:		Documentation
 Requires:	%{name}-index >= %{version}
 Obsoletes:	rfc-text
@@ -63,19 +63,19 @@ Obsoletes:	rfc-text
 This is pure text version of basic RFC (Request For Comments)
 documents, referenced by some other package documentation.
 
-%description text-basic -l es
-Ésta es la versión de texto puro de los documentos RFC (Request For
-Comments: petición de comentarios), a los que se refiere la
-documentación de algunos otros paquetes.
+%description text-basic -l es.UTF-8
+Ã‰sta es la versiÃ³n de texto puro de los documentos RFC (Request For
+Comments: peticiÃ³n de comentarios), a los que se refiere la
+documentaciÃ³n de algunos otros paquetes.
 
-%description text-basic -l pl
-Wersja tekstowa dokumentów podstawowych RFC (Request For Comments), do
-których odnosi siê dokumentacja innych pakietów.
+%description text-basic -l pl.UTF-8
+Wersja tekstowa dokumentÃ³w podstawowych RFC (Request For Comments), do
+ktÃ³rych odnosi siÄ™ dokumentacja innych pakietÃ³w.
 
 %package text
 Summary:	RFC documents - pure text version
-Summary(es):	Documentos RFC - versión de texto puro
-Summary(pl):	Wersja czysto tekstowa dokumentów RFC
+Summary(es.UTF-8):   Documentos RFC - versiÃ³n de texto puro
+Summary(pl.UTF-8):   Wersja czysto tekstowa dokumentÃ³w RFC
 Group:		Documentation
 Requires:	%{name}-index >= %{version}
 Provides:	%{name}-text-basic
@@ -86,49 +86,49 @@ This is pure text version of RFC (Request For Comments) documents. The
 set is incomplete. Some documents are available in PostScript and PDF
 formats only.
 
-%description text -l es
-Ésta es la versión de texto puro de los documentos RFC (Request For
-Comments: petición de comentarios). Este conjunto es incompleto, ya
-que algunos documentos son disponibles sólo en los formatos PostScript
+%description text -l es.UTF-8
+Ã‰sta es la versiÃ³n de texto puro de los documentos RFC (Request For
+Comments: peticiÃ³n de comentarios). Este conjunto es incompleto, ya
+que algunos documentos son disponibles sÃ³lo en los formatos PostScript
 y PDF.
 
-%description text -l pl
-Wersja tekstowa dokumentów RFC (Request For Comments). Zbiór jest
-niepe³ny, gdy¿ niektóre dokumenty s± dostêpne wy³±cznie w postaci
+%description text -l pl.UTF-8
+Wersja tekstowa dokumentÃ³w RFC (Request For Comments). ZbiÃ³r jest
+niepeÅ‚ny, gdyÅ¼ niektÃ³re dokumenty sÄ… dostÄ™pne wyÅ‚Ä…cznie w postaci
 postscriptowej i PDF.
 
 %package ps
 Summary:	RFC documents - PostScript version
-Summary(es):	Documentos RFC - versión PostScript
-Summary(pl):	Wersja postscriptowa dokumentów RFC
+Summary(es.UTF-8):   Documentos RFC - versiÃ³n PostScript
+Summary(pl.UTF-8):   Wersja postscriptowa dokumentÃ³w RFC
 Group:		Documentation
 Requires:	%{name}-index >= %{version}
 
 %description ps
 PostScript version of RFC (Request For Comments) documents.
 
-%description ps -l es
-La versión PostScript de los documentos RFC (Request For Comments:
-petición de comentarios).
+%description ps -l es.UTF-8
+La versiÃ³n PostScript de los documentos RFC (Request For Comments:
+peticiÃ³n de comentarios).
 
-%description ps -l pl
-Wersja postscriptowa dokumentów RFC (Request For Comments).
+%description ps -l pl.UTF-8
+Wersja postscriptowa dokumentÃ³w RFC (Request For Comments).
 
 %package pdf
 Summary:	RFC documents - PDF version
-Summary(es):	Documentos RFC - versión PDF
-Summary(pl):	Wersja postscriptowa dokumentów RFC
+Summary(es.UTF-8):   Documentos RFC - versiÃ³n PDF
+Summary(pl.UTF-8):   Wersja postscriptowa dokumentÃ³w RFC
 Group:		Documentation
 Requires:	%{name}-index >= %{version}
 
 %description pdf
 RFC (Request For Comments) documents in Adobe PDF format.
 
-%description pdf -l es
-Documentos RFC (Request For Comments: petición de comentarios) en
+%description pdf -l es.UTF-8
+Documentos RFC (Request For Comments: peticiÃ³n de comentarios) en
 formato Adobe PDF.
 
-%description pdf -l pl
+%description pdf -l pl.UTF-8
 Dokumenty RFC (Request For Comments) w formacie Adobe PDF.
 
 %prep
