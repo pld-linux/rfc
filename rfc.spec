@@ -7,28 +7,30 @@ Summary:	RFC documents
 Summary(es.UTF-8):	Los documentos RFC
 Summary(pl.UTF-8):	Dokumenty RFC
 Name:		rfc
-Version:	4498
-Release:	5
+Version:	4998
+Release:	1
 License:	distributable
 Group:		Documentation
 Source0:	ftp://ftp.isi.edu/in-notes/tar/RFCs0001-0500.tar.gz
-# Source0-md5:	27efa3beef2ed328438de3b1e8193b70
+# Source0-md5:	ecfacc137473b205cc8dc1b73585634a
 Source1:	ftp://ftp.isi.edu/in-notes/tar/RFCs0501-1000.tar.gz
-# Source1-md5:	c40cee0fd7bc4cc8efd18721c229a407
+# Source1-md5:	7223eb16b643d96758656b031a262c28
 Source2:	ftp://ftp.isi.edu/in-notes/tar/RFCs1001-1500.tar.gz
-# Source2-md5:	b3dc2d4fac7733014b537f914f09b78f
+# Source2-md5:	b1c5cbf854dcf6ebcf33e213960a944e
 Source3:	ftp://ftp.isi.edu/in-notes/tar/RFCs1501-2000.tar.gz
-# Source3-md5:	18bc03445190a9a9e331eb47b07f942e
+# Source3-md5:	7ce21ad0d479c7b01ddc0cbca23ec8fd
 Source4:	ftp://ftp.isi.edu/in-notes/tar/RFCs2001-2500.tar.gz
-# Source4-md5:	ec09b758d25e39b1d4a415780ff0c329
+# Source4-md5:	4fdbab79b9c6a12f0c8e10d4a921270c
 Source5:	ftp://ftp.isi.edu/in-notes/tar/RFCs2501-3000.tar.gz
-# Source5-md5:	0799d01a6776e69b5d3ec3b348013c79
+# Source5-md5:	61efc8cda2754527575b36f1bdf7acc8
 Source6:	ftp://ftp.isi.edu/in-notes/tar/RFCs3001-3500.tar.gz
-# Source6-md5:	5e2673ebd98b83380dd932dced3c8152
+# Source6-md5:	b158f6160d6f778fb46a195bb1ab6794
 Source7:	ftp://ftp.isi.edu/in-notes/tar/RFCs3501-4000.tar.gz
-# Source7-md5:	273afd97f03a001bacdf0e9a7e0dfe3c
+# Source7-md5:	a664d03d9fe7b92c9a2b10f9acee8c01
 Source8:	ftp://ftp.isi.edu/in-notes/tar/RFCs4001-4500.tar.gz
-# Source8-md5:	311917b3dce303ca3ceff543eefdd670
+# Source8-md5:	d5a1f14dc1ba6a1bfd507c9be257c0ee
+Source9:	ftp://ftp.isi.edu/in-notes/tar/RFCs4501-5000.tar.gz
+# Source9-md5:	dbd3e9544dbb1b5292c660b408fb9622
 Patch0:		%{name}.patch
 URL:		http://www.rfc.net/
 %if %{with ps} || %{with pdf}
