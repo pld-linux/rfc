@@ -8,28 +8,28 @@ Summary(es.UTF-8):	Los documentos RFC
 Summary(pl.UTF-8):	Dokumenty RFC
 Name:		rfc
 Version:	4998
-Release:	1
+Release:	0.1
 License:	distributable
 Group:		Documentation
-Source0:	ftp://ftp.isi.edu/in-notes/tar/RFCs0001-0500.tar.gz
+Source0:	ftp://ftp.rfc-editor.org/in-notes/tar/RFCs0001-0500.tar.gz
 # Source0-md5:	ecfacc137473b205cc8dc1b73585634a
-Source1:	ftp://ftp.isi.edu/in-notes/tar/RFCs0501-1000.tar.gz
+Source1:	ftp://ftp.rfc-editor.org/in-notes/tar/RFCs0501-1000.tar.gz
 # Source1-md5:	7223eb16b643d96758656b031a262c28
-Source2:	ftp://ftp.isi.edu/in-notes/tar/RFCs1001-1500.tar.gz
+Source2:	ftp://ftp.rfc-editor.org/in-notes/tar/RFCs1001-1500.tar.gz
 # Source2-md5:	b1c5cbf854dcf6ebcf33e213960a944e
-Source3:	ftp://ftp.isi.edu/in-notes/tar/RFCs1501-2000.tar.gz
+Source3:	ftp://ftp.rfc-editor.org/in-notes/tar/RFCs1501-2000.tar.gz
 # Source3-md5:	7ce21ad0d479c7b01ddc0cbca23ec8fd
-Source4:	ftp://ftp.isi.edu/in-notes/tar/RFCs2001-2500.tar.gz
+Source4:	ftp://ftp.rfc-editor.org/in-notes/tar/RFCs2001-2500.tar.gz
 # Source4-md5:	4fdbab79b9c6a12f0c8e10d4a921270c
-Source5:	ftp://ftp.isi.edu/in-notes/tar/RFCs2501-3000.tar.gz
+Source5:	ftp://ftp.rfc-editor.org/in-notes/tar/RFCs2501-3000.tar.gz
 # Source5-md5:	61efc8cda2754527575b36f1bdf7acc8
-Source6:	ftp://ftp.isi.edu/in-notes/tar/RFCs3001-3500.tar.gz
+Source6:	ftp://ftp.rfc-editor.org/in-notes/tar/RFCs3001-3500.tar.gz
 # Source6-md5:	b158f6160d6f778fb46a195bb1ab6794
-Source7:	ftp://ftp.isi.edu/in-notes/tar/RFCs3501-4000.tar.gz
+Source7:	ftp://ftp.rfc-editor.org/in-notes/tar/RFCs3501-4000.tar.gz
 # Source7-md5:	a664d03d9fe7b92c9a2b10f9acee8c01
-Source8:	ftp://ftp.isi.edu/in-notes/tar/RFCs4001-4500.tar.gz
+Source8:	ftp://ftp.rfc-editor.org/in-notes/tar/RFCs4001-4500.tar.gz
 # Source8-md5:	d5a1f14dc1ba6a1bfd507c9be257c0ee
-Source9:	ftp://ftp.isi.edu/in-notes/tar/RFCs4501-5000.tar.gz
+Source9:	ftp://ftp.rfc-editor.org/in-notes/tar/RFCs4501-5000.tar.gz
 # Source9-md5:	dbd3e9544dbb1b5292c660b408fb9622
 Patch0:		%{name}.patch
 URL:		http://www.rfc.net/
@@ -191,9 +191,9 @@ done
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_docdir}/RFC/text/{{0,1,2,3}{0,1,2,3,4,5,6,7,8,9},4{0,1,2,3,4}}00
-install -d $RPM_BUILD_ROOT%{_docdir}/RFC/pdf/{{0,1,2,3}{0,1,2,3,4,5,6,7,8,9},4{0,1,2,3,4}}00
-install -d $RPM_BUILD_ROOT%{_docdir}/RFC/postscript/{{0,1,2,3}{0,1,2,3,4,5,6,7,8,9},4{0,1,2,3,4}}00
+install -d $RPM_BUILD_ROOT%{_docdir}/RFC/text/{{0,1,2,3,4}{0,1,2,3,4,5,6,7,8,9}}00
+install -d $RPM_BUILD_ROOT%{_docdir}/RFC/pdf/{{0,1,2,3,4}{0,1,2,3,4,5,6,7,8,9}}00
+install -d $RPM_BUILD_ROOT%{_docdir}/RFC/postscript/{{0,1,2,3,4}{0,1,2,3,4,5,6,7,8,9}}00
 
 find . -name 'rfc[1-9]*.txt' -print | xargs gzip -9
 %if %{with ps}
@@ -201,7 +201,7 @@ find . -name 'rfc[1-9]*.ps' -print | xargs gzip -9
 %endif
 
 # install rfc[1-9]*.txt* $RPM_BUILD_ROOT%{_docdir}/RFC/text
-for i in {0,1,2,3}{0,1,2,3,4,5,6,7,8,9} 4{0,1,2,3,4}; do
+for i in {0,1,2,3,4}{0,1,2,3,4,5,6,7,8,9} ; do
 	install rfc`echo $i|sed s/^0\*//g`[0-9][0-9][a.]*txt* \
 		$RPM_BUILD_ROOT%{_docdir}/RFC/text/${i}00
 done
@@ -209,7 +209,7 @@ install rfc[0-9].txt* $RPM_BUILD_ROOT%{_docdir}/RFC/text/0000
 
 # install rfc*.pdf       $RPM_BUILD_ROOT%{_docdir}/RFC/pdf
 %if %{with pdf}
-for i in {0,1,2,3}{0,1,2,3,4,5,6,7,8,9} 4{0,1,2,3,4} ; do
+for i in {0,1,2,3,4}{0,1,2,3,4,5,6,7,8,9} ; do
 	install rfc`echo $i|sed s/^0\*//g`[0-9][0-9][a.-]*pdf \
 		$RPM_BUILD_ROOT%{_docdir}/RFC/pdf/${i}00
 done
@@ -218,7 +218,7 @@ install rfc[0-9].pdf $RPM_BUILD_ROOT%{_docdir}/RFC/pdf/0000
 
 %if %{with ps}
 # install rfc*.ps        $RPM_BUILD_ROOT%{_docdir}/RFC/postscript
-for i in {0,1,2,3}{0,1,2,3,4,5,6,7,8,9} 4{0,1,2,3,4} ; do
+for i in {0,1,2,3,4}{0,1,2,3,4,5,6,7,8,9} ; do
 	install rfc`echo $i|sed s/^0\*//g`[0-9][0-9][a.-]*ps* \
 		$RPM_BUILD_ROOT%{_docdir}/RFC/postscript/${i}00
 done
