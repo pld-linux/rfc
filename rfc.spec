@@ -8,7 +8,7 @@ Summary(es.UTF-8):	Los documentos RFC
 Summary(pl.UTF-8):	Dokumenty RFC
 Name:		rfc
 Version:	4998
-Release:	0.1
+Release:	1
 License:	distributable
 Group:		Documentation
 Source0:	ftp://ftp.rfc-editor.org/in-notes/tar/RFCs0001-0500.tar.gz
@@ -134,7 +134,7 @@ formato Adobe PDF.
 Dokumenty RFC (Request For Comments) w formacie Adobe PDF.
 
 %prep
-%setup -q -c -a1 -a2 -a3 -a4 -a5 -a6 -a7 -a8
+%setup -q -c -a1 -a2 -a3 -a4 -a5 -a6 -a7 -a8 -a9
 %patch0 -p0
 
 %build
@@ -191,9 +191,9 @@ done
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_docdir}/RFC/text/{{0,1,2,3,4}{0,1,2,3,4,5,6,7,8,9}}00
-install -d $RPM_BUILD_ROOT%{_docdir}/RFC/pdf/{{0,1,2,3,4}{0,1,2,3,4,5,6,7,8,9}}00
-install -d $RPM_BUILD_ROOT%{_docdir}/RFC/postscript/{{0,1,2,3,4}{0,1,2,3,4,5,6,7,8,9}}00
+install -d $RPM_BUILD_ROOT%{_docdir}/RFC/text/{0,1,2,3,4}{0,1,2,3,4,5,6,7,8,9}00
+install -d $RPM_BUILD_ROOT%{_docdir}/RFC/pdf/{0,1,2,3,4}{0,1,2,3,4,5,6,7,8,9}00
+install -d $RPM_BUILD_ROOT%{_docdir}/RFC/postscript/{0,1,2,3,4}{0,1,2,3,4,5,6,7,8,9}00
 
 find . -name 'rfc[1-9]*.txt' -print | xargs gzip -9
 %if %{with ps}
