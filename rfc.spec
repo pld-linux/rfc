@@ -8,7 +8,7 @@ Summary(es.UTF-8):	Los documentos RFC
 Summary(pl.UTF-8):	Dokumenty RFC
 Name:		rfc
 Version:	4998
-Release:	1
+Release:	2
 License:	distributable
 Group:		Documentation
 Source0:	ftp://ftp.rfc-editor.org/in-notes/tar/RFCs0001-0500.tar.gz
@@ -30,7 +30,7 @@ Source7:	ftp://ftp.rfc-editor.org/in-notes/tar/RFCs3501-4000.tar.gz
 Source8:	ftp://ftp.rfc-editor.org/in-notes/tar/RFCs4001-4500.tar.gz
 # Source8-md5:	d5a1f14dc1ba6a1bfd507c9be257c0ee
 Source9:	ftp://ftp.rfc-editor.org/in-notes/tar/RFCs4501-5000.tar.gz
-# Source9-md5:	dbd3e9544dbb1b5292c660b408fb9622
+# Source9-md5:	19f2cbccee79c8dddae0becad4c4876c
 Patch0:		%{name}.patch
 URL:		http://www.rfc.net/
 %if %{with ps} || %{with pdf}
