@@ -191,9 +191,9 @@ done
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_docdir}/RFC/text/{{0,1,2,3,4}{0,1,2,3,4,5,6,7,8,9},50}00
-install -d $RPM_BUILD_ROOT%{_docdir}/RFC/pdf/{{0,1,2,3,4}{0,1,2,3,4,5,6,7,8,9},50}00
-install -d $RPM_BUILD_ROOT%{_docdir}/RFC/postscript/{{0,1,2,3,4}{0,1,2,3,4,5,6,7,8,9},50}00
+install -d $RPM_BUILD_ROOT%{_docdir}/RFC/text/{0,1,2,3,4}{0,1,2,3,4,5,6,7,8,9}00
+install -d $RPM_BUILD_ROOT%{_docdir}/RFC/pdf/{0,1,2,3,4}{0,1,2,3,4,5,6,7,8,9}00
+install -d $RPM_BUILD_ROOT%{_docdir}/RFC/postscript/{0,1,2,3,4}{0,1,2,3,4,5,6,7,8,9}00
 
 find . -name 'rfc[1-9]*.txt' -print | xargs gzip -9
 %if %{with ps}
@@ -201,7 +201,7 @@ find . -name 'rfc[1-9]*.ps' -print | xargs gzip -9
 %endif
 
 # install rfc[1-9]*.txt* $RPM_BUILD_ROOT%{_docdir}/RFC/text
-for i in {0,1,2,3,4}{0,1,2,3,4,5,6,7,8,9} 50 ; do
+for i in {0,1,2,3,4}{0,1,2,3,4,5,6,7,8,9} ; do
 	install rfc`echo $i|sed s/^0\*//g`[0-9][0-9][a.]*txt* \
 		$RPM_BUILD_ROOT%{_docdir}/RFC/text/${i}00
 done
@@ -209,7 +209,7 @@ install rfc[0-9].txt* $RPM_BUILD_ROOT%{_docdir}/RFC/text/0000
 
 # install rfc*.pdf       $RPM_BUILD_ROOT%{_docdir}/RFC/pdf
 %if %{with pdf}
-for i in {0,1,2,3,4}{0,1,2,3,4,5,6,7,8,9} 50 ; do
+for i in {0,1,2,3,4}{0,1,2,3,4,5,6,7,8,9} ; do
 	install rfc`echo $i|sed s/^0\*//g`[0-9][0-9][a.-]*pdf \
 		$RPM_BUILD_ROOT%{_docdir}/RFC/pdf/${i}00
 done
@@ -218,7 +218,7 @@ install rfc[0-9].pdf $RPM_BUILD_ROOT%{_docdir}/RFC/pdf/0000
 
 %if %{with ps}
 # install rfc*.ps        $RPM_BUILD_ROOT%{_docdir}/RFC/postscript
-for i in {0,1,2,3,4}{0,1,2,3,4,5,6,7,8,9} 50 ; do
+for i in {0,1,2,3,4}{0,1,2,3,4,5,6,7,8,9} ; do
 	install rfc`echo $i|sed s/^0\*//g`[0-9][0-9][a.-]*ps* \
 		$RPM_BUILD_ROOT%{_docdir}/RFC/postscript/${i}00
 done
