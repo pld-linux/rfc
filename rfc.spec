@@ -169,8 +169,8 @@ for n in 1119 1124 1128 1129 1131 ; do
 	pdftotext rfc$n.pdf - >> rfc$n.txt
 done
 # these are available as pdf only and are paper copy scans
-for n in 8 9 11 51 74 109 110 112 119 165 183 199 211 216 296 304 360 403 418
-         475 522 530 535 551 576 577 578 579 581 586 588 592 594 600 645 647
+for n in 8 9 11 51 74 109 110 112 119 165 183 199 211 216 296 304 360 403 418 \
+         475 522 530 535 551 576 577 578 579 581 586 588 592 594 600 645 647 \
          661 671 679 694 696 712 714; do
 	%if %{with ps}
 	gs -q -dNOPAUSE -dBATCH -dSAFER -sDEVICE=pswrite \
