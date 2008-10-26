@@ -8,13 +8,13 @@ Summary(es.UTF-8):	Los documentos RFC
 Summary(pl.UTF-8):	Dokumenty RFC
 Name:		rfc
 Version:	4998
-Release:	4
+Release:	5
 License:	distributable
 Group:		Documentation
 Source0:	ftp://ftp.rfc-editor.org/in-notes/tar/RFCs0001-0500.tar.gz
-# Source0-md5:	dc57689b58746bdcd4bae06b5f1fa6d0
+# Source0-md5:	ac771064e51f8a87e2f3e3459a196dd6
 Source1:	ftp://ftp.rfc-editor.org/in-notes/tar/RFCs0501-1000.tar.gz
-# Source1-md5:	72a8f112bfed0e06e046ea1be5b5fe5d
+# Source1-md5:	75a1fa3826fb0a684da5c598ad4951a0
 Source2:	ftp://ftp.rfc-editor.org/in-notes/tar/RFCs1001-1500.tar.gz
 # Source2-md5:	b1c5cbf854dcf6ebcf33e213960a944e
 Source3:	ftp://ftp.rfc-editor.org/in-notes/tar/RFCs1501-2000.tar.gz
@@ -156,7 +156,7 @@ mv -f rfc525.pdf rfc525-pict.pdf
 mv -f rfc546.pdf rfc546-pict.pdf
 
 %if %{with ps}
-for n in 1144 1305 ; do
+for n in 616 1144 1305 ; do
 	gs -q -dNOPAUSE -dBATCH -dSAFER -sDEVICE=pswrite \
 		-sOutputFile=rfc$n.ps -c save pop -f rfc$n.pdf
 done
@@ -167,6 +167,18 @@ for n in 1119 1124 1128 1129 1131 ; do
 	echo -e '\nThe text below was generated from PDF by pdftotext.' >> rfc$n.txt
 	echo -e '----------------------------------------------------------------------\n' >> rfc$n.txt
 	pdftotext rfc$n.pdf - >> rfc$n.txt
+done
+# these are available as pdf only and are paper copy scans
+for n in 8 9 11 51 74 109 110 112 119 165 183 199 211 216 296 304 360 403 418
+         475 522 530 535 551 576 577 578 579 581 586 588 592 594 600 645 647
+         661 671 679 694 696 712 714; do
+	%if %{with ps}
+	gs -q -dNOPAUSE -dBATCH -dSAFER -sDEVICE=pswrite \
+		-sOutputFile=rfc$n.ps -c save pop -f rfc$n.pdf
+	%endif
+        if [ ! -e rfc$n.txt ]; then
+		echo -e '\nThis RFC is available as paper copy scan in PDF/PS format only.\n' > rfc$n.txt
+	fi
 done
 
 # Generate .ps and .pdf versions when they are not provided
