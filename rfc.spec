@@ -8,13 +8,13 @@ Summary(es.UTF-8):	Los documentos RFC
 Summary(pl.UTF-8):	Dokumenty RFC
 Name:		rfc
 Version:	4998
-Release:	5
+Release:	6
 License:	distributable
 Group:		Documentation
 Source0:	ftp://ftp.rfc-editor.org/in-notes/tar/RFCs0001-0500.tar.gz
-# Source0-md5:	ac771064e51f8a87e2f3e3459a196dd6
+# Source0-md5:	fabc56407a207066936217f7810bcde0
 Source1:	ftp://ftp.rfc-editor.org/in-notes/tar/RFCs0501-1000.tar.gz
-# Source1-md5:	75a1fa3826fb0a684da5c598ad4951a0
+# Source1-md5:	230782f8893a7c0fe2b932434bdae21d
 Source2:	ftp://ftp.rfc-editor.org/in-notes/tar/RFCs1001-1500.tar.gz
 # Source2-md5:	b1c5cbf854dcf6ebcf33e213960a944e
 Source3:	ftp://ftp.rfc-editor.org/in-notes/tar/RFCs1501-2000.tar.gz
@@ -170,8 +170,8 @@ for n in 1119 1124 1128 1129 1131 ; do
 done
 # these are available as pdf only and are paper copy scans
 for n in 8 9 11 51 74 109 110 112 119 165 183 199 211 216 296 304 360 403 418 \
-         475 522 530 535 551 576 577 578 579 581 586 588 592 594 600 645 647 \
-         661 671 679 694 696 712 714; do
+         475 522 530 535 551 576 577 578 579 581 586 588 592 594 598 600 645 \
+         647 661 671 679 694 696 712 714; do
 	%if %{with ps}
 	gs -q -dNOPAUSE -dBATCH -dSAFER -sDEVICE=pswrite \
 		-sOutputFile=rfc$n.ps -c save pop -f rfc$n.pdf
