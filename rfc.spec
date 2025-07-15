@@ -135,7 +135,7 @@ Dokumenty RFC (Request For Comments) w formacie Adobe PDF.
 
 %prep
 %setup -q -c -a1 -a2 -a3 -a4 -a5 -a6 -a7 -a8 -a9
-%patch0 -p0
+%patch -P0 -p0
 
 %build
 rm -f rfc2328.hastabs.txt
